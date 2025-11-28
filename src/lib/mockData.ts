@@ -28,7 +28,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
     time: 30,
     calories: 320,
-    tags: ["Vegetarian", "Vegan", "High Protein", "Gluten Free"],
+    tags: ["Vegetarian", "Vegan", "High Protein", "Gluten Free", "North Indian"],
     vegetables: ["Onion", "Tomato", "Green Chilli", "Garlic", "Ginger"],
     ingredients: [
       "1 cup toor dal",
@@ -59,7 +59,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80",
     time: 25,
     calories: 280,
-    tags: ["Vegetarian", "Vegan", "Gluten Free"],
+    tags: ["Vegetarian", "Vegan", "Gluten Free", "Punjabi"],
     vegetables: ["Potato", "Cauliflower", "Onion", "Tomato", "Ginger"],
     ingredients: [
       "2 potatoes, cubed",
@@ -90,7 +90,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&q=80",
     time: 15,
     calories: 250,
-    tags: ["Vegetarian", "Vegan", "Breakfast", "Gluten Free"],
+    tags: ["Vegetarian", "Vegan", "Breakfast", "Gluten Free", "Maharashtrian"],
     vegetables: ["Onion", "Potato", "Green Chilli", "Coriander Leaves"],
     ingredients: [
       "2 cups poha (flattened rice)",
@@ -123,7 +123,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&q=80",
     time: 35,
     calories: 420,
-    tags: ["Vegetarian", "High Protein"],
+    tags: ["Vegetarian", "High Protein", "Punjabi"],
     vegetables: ["Onion", "Tomato", "Garlic", "Ginger", "Capsicum"],
     ingredients: [
       "300g paneer, cubed",
@@ -155,7 +155,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&q=80",
     time: 45,
     calories: 450,
-    tags: ["High Protein", "Gluten Free"],
+    tags: ["High Protein", "Gluten Free", "North Indian"],
     vegetables: ["Onion", "Tomato", "Ginger", "Garlic", "Green Chilli"],
     ingredients: [
       "500g chicken, cut into pieces",
@@ -188,7 +188,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&q=80",
     time: 20,
     calories: 280,
-    tags: ["Vegetarian", "Vegan", "Breakfast"],
+    tags: ["Vegetarian", "Vegan", "Breakfast", "South Indian"],
     vegetables: ["Onion", "Carrot", "Peas", "Green Chilli", "Ginger"],
     ingredients: [
       "1 cup rava (semolina)",
@@ -220,7 +220,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80",
     time: 40,
     calories: 350,
-    tags: ["Vegetarian", "Vegan", "High Protein", "Gluten Free"],
+    tags: ["Vegetarian", "Vegan", "High Protein", "Gluten Free", "Punjabi"],
     vegetables: ["Onion", "Tomato", "Ginger", "Garlic", "Green Chilli"],
     ingredients: [
       "1 cup rajma (kidney beans), soaked overnight",
@@ -252,7 +252,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1645177628172-a94c30a5e86f?w=800&q=80",
     time: 30,
     calories: 380,
-    tags: ["Vegetarian", "High Protein"],
+    tags: ["Vegetarian", "High Protein", "Punjabi"],
     vegetables: ["Spinach", "Onion", "Tomato", "Garlic", "Ginger"],
     ingredients: [
       "300g paneer, cubed",
@@ -284,7 +284,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=800&q=80",
     time: 30,
     calories: 320,
-    tags: ["Vegetarian", "Vegan", "Breakfast"],
+    tags: ["Vegetarian", "Vegan", "Breakfast", "South Indian"],
     vegetables: ["Potato", "Onion", "Green Chilli", "Ginger"],
     ingredients: [
       "Dosa batter (rice and urad dal)",
@@ -316,7 +316,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80",
     time: 35,
     calories: 340,
-    tags: ["Vegetarian", "Vegan", "High Protein", "Gluten Free"],
+    tags: ["Vegetarian", "Vegan", "High Protein", "Gluten Free", "Punjabi"],
     vegetables: ["Onion", "Tomato", "Ginger", "Garlic"],
     ingredients: [
       "2 cups chickpeas, soaked overnight",
@@ -349,7 +349,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80",
     time: 50,
     calories: 420,
-    tags: ["Vegetarian", "Vegan"],
+    tags: ["Vegetarian", "Vegan", "Hyderabadi"],
     vegetables: ["Carrot", "Peas", "Potato", "Onion", "Tomato"],
     ingredients: [
       "2 cups basmati rice",
@@ -383,7 +383,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80",
     time: 30,
     calories: 350,
-    tags: ["Vegetarian", "Breakfast"],
+    tags: ["Vegetarian", "Breakfast", "Punjabi"],
     vegetables: ["Potato", "Onion", "Green Chilli", "Coriander Leaves"],
     ingredients: [
       "2 cups wheat flour",
@@ -416,7 +416,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1626074353765-517a681e40be?w=800&q=80",
     time: 40,
     calories: 280,
-    tags: ["Vegetarian", "Vegan", "Gluten Free"],
+    tags: ["Vegetarian", "Vegan", "Gluten Free", "South Indian"],
     vegetables: ["Drumstick", "Carrot", "Bottle Gourd", "Onion", "Tomato"],
     ingredients: [
       "1 cup toor dal",
@@ -449,7 +449,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&q=80",
     time: 25,
     calories: 320,
-    tags: ["High Protein", "Gluten Free"],
+    tags: ["High Protein", "Gluten Free", "Bengali"],
     vegetables: ["Onion", "Tomato", "Ginger", "Garlic"],
     ingredients: [
       "6 boiled eggs",
@@ -482,7 +482,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&q=80",
     time: 35,
     calories: 260,
-    tags: ["Vegetarian", "Vegan", "Gluten Free"],
+    tags: ["Vegetarian", "Vegan", "Gluten Free", "Punjabi"],
     vegetables: ["Brinjal (Eggplant)", "Onion", "Tomato", "Green Chilli", "Ginger"],
     ingredients: [
       "2 large brinjals (eggplants)",
@@ -508,6 +508,320 @@ export const mockRecipes: Recipe[] = [
     protein: 6,
     carbs: 32,
     fat: 12
+  },
+  {
+    id: "16",
+    title: "Machher Jhol (Bengali Fish Curry)",
+    image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&q=80",
+    time: 35,
+    calories: 380,
+    tags: ["High Protein", "Gluten Free", "Bengali"],
+    vegetables: ["Potato", "Tomato", "Onion", "Green Chilli", "Ginger"],
+    ingredients: [
+      "500g fish (Rohu/Catla), cut into pieces",
+      "2 potatoes, quartered",
+      "2 tomatoes, chopped",
+      "1 onion, sliced",
+      "2 green chillies, slit",
+      "1 tsp panch phoron",
+      "1 tsp turmeric",
+      "1 tsp cumin powder",
+      "Ginger paste",
+      "Mustard oil",
+      "Coriander leaves"
+    ],
+    instructions: [
+      "Marinate fish with turmeric and salt",
+      "Heat mustard oil, fry fish pieces until golden, set aside",
+      "In same oil, add panch phoron, let it crackle",
+      "Add onions, ginger paste, green chillies, sauté",
+      "Add tomatoes and spices, cook until soft",
+      "Add potatoes and water, cook until potatoes are tender",
+      "Add fried fish pieces, simmer for 5 minutes",
+      "Garnish with coriander leaves"
+    ],
+    protein: 32,
+    carbs: 22,
+    fat: 18
+  },
+  {
+    id: "17",
+    title: "Shukto (Bengali Mixed Vegetable)",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+    time: 30,
+    calories: 220,
+    tags: ["Vegetarian", "Vegan", "Gluten Free", "Bengali"],
+    vegetables: ["Bitter Gourd", "Potato", "Brinjal (Eggplant)", "Radish", "Drumstick"],
+    ingredients: [
+      "Mixed vegetables (bitter gourd, potato, brinjal, radish, drumstick)",
+      "1 tsp panch phoron",
+      "1 bay leaf",
+      "2 green chillies",
+      "1/2 tsp turmeric",
+      "Ginger paste",
+      "Milk",
+      "Mustard oil"
+    ],
+    instructions: [
+      "Cut vegetables into long strips",
+      "Heat mustard oil, add panch phoron and bay leaf",
+      "Add vegetables, turmeric, ginger paste, sauté",
+      "Add water, cook until vegetables are tender",
+      "Add milk and green chillies",
+      "Simmer for 5 minutes until gravy thickens"
+    ],
+    protein: 6,
+    carbs: 28,
+    fat: 10
+  },
+  {
+    id: "18",
+    title: "Idli",
+    image: "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800&q=80",
+    time: 20,
+    calories: 150,
+    tags: ["Vegetarian", "Vegan", "Breakfast", "Gluten Free", "South Indian"],
+    vegetables: [],
+    ingredients: [
+      "Idli batter (rice and urad dal, fermented)",
+      "Salt to taste",
+      "Oil for greasing"
+    ],
+    instructions: [
+      "Grease idli molds with oil",
+      "Pour idli batter into each mold",
+      "Steam in idli steamer for 10-12 minutes",
+      "Check with toothpick, if it comes out clean, idlis are done",
+      "Remove and serve hot with sambar and coconut chutney"
+    ],
+    protein: 4,
+    carbs: 28,
+    fat: 2
+  },
+  {
+    id: "19",
+    title: "Ven Pongal (Savory Rice)",
+    image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&q=80",
+    time: 30,
+    calories: 300,
+    tags: ["Vegetarian", "Vegan", "Breakfast", "Gluten Free", "South Indian"],
+    vegetables: ["Ginger", "Green Chilli"],
+    ingredients: [
+      "1 cup rice",
+      "1/2 cup moong dal",
+      "1 tsp cumin seeds",
+      "1 tsp black pepper",
+      "Curry leaves",
+      "2 green chillies",
+      "Ginger, chopped",
+      "Ghee",
+      "Cashews"
+    ],
+    instructions: [
+      "Dry roast moong dal until fragrant",
+      "Pressure cook rice and dal together with water for 3 whistles",
+      "Heat ghee, add cumin, black pepper, curry leaves",
+      "Add ginger, green chillies, cashews, fry",
+      "Mix tempering with cooked rice-dal mixture",
+      "Serve hot with coconut chutney and sambar"
+    ],
+    protein: 12,
+    carbs: 48,
+    fat: 8
+  },
+  {
+    id: "20",
+    title: "Rasam",
+    image: "https://images.unsplash.com/photo-1626074353765-517a681e40be?w=800&q=80",
+    time: 25,
+    calories: 180,
+    tags: ["Vegetarian", "Vegan", "Gluten Free", "South Indian"],
+    vegetables: ["Tomato", "Garlic"],
+    ingredients: [
+      "3 tomatoes, chopped",
+      "1/4 cup toor dal",
+      "2 tbsp rasam powder",
+      "Tamarind pulp",
+      "1 tsp mustard seeds",
+      "Curry leaves",
+      "Garlic, crushed",
+      "Coriander leaves",
+      "Asafoetida"
+    ],
+    instructions: [
+      "Cook toor dal until soft, mash well",
+      "Boil tomatoes with tamarind pulp and water",
+      "Add rasam powder, salt, and cooked dal",
+      "Simmer for 10 minutes",
+      "Heat oil, add mustard seeds, curry leaves, asafoetida",
+      "Pour tempering over rasam",
+      "Garnish with coriander leaves and crushed garlic"
+    ],
+    protein: 6,
+    carbs: 24,
+    fat: 6
+  },
+  {
+    id: "21",
+    title: "Dhokla",
+    image: "https://images.unsplash.com/photo-1626074353765-517a681e40be?w=800&q=80",
+    time: 30,
+    calories: 240,
+    tags: ["Vegetarian", "Vegan", "Breakfast", "Gluten Free", "Gujarati"],
+    vegetables: ["Green Chilli", "Ginger"],
+    ingredients: [
+      "2 cups besan (gram flour)",
+      "1 cup curd",
+      "1 tsp eno fruit salt",
+      "1 tsp sugar",
+      "2 green chillies, chopped",
+      "1 tsp ginger paste",
+      "1 tsp mustard seeds",
+      "Curry leaves",
+      "Sesame seeds",
+      "Coriander leaves"
+    ],
+    instructions: [
+      "Mix besan with curd, water, sugar, salt, green chillies, ginger paste",
+      "Let batter rest for 15 minutes",
+      "Add eno and mix gently, batter will become fluffy",
+      "Pour into greased steaming tray, steam for 15 minutes",
+      "Heat oil, add mustard seeds, curry leaves, sesame seeds",
+      "Pour tempering over dhokla, cut into pieces",
+      "Garnish with coriander and serve with green chutney"
+    ],
+    protein: 12,
+    carbs: 36,
+    fat: 8
+  },
+  {
+    id: "22",
+    title: "Undhiyu",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+    time: 50,
+    calories: 340,
+    tags: ["Vegetarian", "Vegan", "Gluten Free", "Gujarati"],
+    vegetables: ["Potato", "Brinjal (Eggplant)", "Yam", "Green Beans", "Peas"],
+    ingredients: [
+      "Mixed vegetables (potato, brinjal, yam, green beans, peas)",
+      "1/4 cup fresh coconut, grated",
+      "2 tbsp peanuts",
+      "2 tbsp sesame seeds",
+      "2 green chillies",
+      "1 tsp cumin seeds",
+      "1 tsp coriander seeds",
+      "Ginger-garlic paste",
+      "Jaggery",
+      "Lemon juice"
+    ],
+    instructions: [
+      "Grind coconut, peanuts, sesame, green chillies into paste",
+      "Mix paste with all vegetables",
+      "Add cumin, coriander, ginger-garlic paste, jaggery, salt",
+      "Cook in pressure cooker for 2 whistles or cook covered on low heat",
+      "Stir gently, add lemon juice",
+      "Serve hot with puri or roti"
+    ],
+    protein: 10,
+    carbs: 46,
+    fat: 14
+  },
+  {
+    id: "23",
+    title: "Gujarati Kadhi",
+    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
+    time: 25,
+    calories: 260,
+    tags: ["Vegetarian", "Gluten Free", "Gujarati"],
+    vegetables: ["Green Chilli", "Ginger"],
+    ingredients: [
+      "2 cups buttermilk",
+      "2 tbsp besan (gram flour)",
+      "1 tsp sugar",
+      "1 tsp mustard seeds",
+      "Curry leaves",
+      "2 green chillies",
+      "Ginger, grated",
+      "Asafoetida",
+      "Coriander leaves"
+    ],
+    instructions: [
+      "Mix buttermilk with besan, sugar, salt until smooth",
+      "Heat oil, add mustard seeds, curry leaves, asafoetida",
+      "Add green chillies and ginger",
+      "Pour buttermilk mixture, stir continuously",
+      "Simmer on low heat for 10-15 minutes",
+      "Garnish with coriander leaves",
+      "Serve with khichdi or rice"
+    ],
+    protein: 8,
+    carbs: 32,
+    fat: 10
+  },
+  {
+    id: "24",
+    title: "Butter Chicken",
+    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&q=80",
+    time: 45,
+    calories: 520,
+    tags: ["High Protein", "Punjabi"],
+    vegetables: ["Onion", "Tomato", "Garlic", "Ginger"],
+    ingredients: [
+      "500g chicken, boneless",
+      "3 tomatoes, pureed",
+      "1 onion, pureed",
+      "2 tbsp butter",
+      "1/2 cup cream",
+      "1 tbsp kasuri methi",
+      "1 tsp garam masala",
+      "1 tsp red chilli powder",
+      "Ginger-garlic paste",
+      "Coriander leaves"
+    ],
+    instructions: [
+      "Marinate chicken with ginger-garlic paste, yogurt, spices for 1 hour",
+      "Grill or pan-fry chicken until cooked",
+      "Heat butter, add onion puree, cook until golden",
+      "Add tomato puree and spices, cook until oil separates",
+      "Add cream and grilled chicken",
+      "Simmer for 10 minutes",
+      "Crush kasuri methi and add, garnish with cream swirl"
+    ],
+    protein: 42,
+    carbs: 18,
+    fat: 32
+  },
+  {
+    id: "25",
+    title: "Sarson ka Saag",
+    image: "https://images.unsplash.com/photo-1645177628172-a94c30a5e86f?w=800&q=80",
+    time: 40,
+    calories: 320,
+    tags: ["Vegetarian", "Vegan", "Gluten Free", "Punjabi"],
+    vegetables: ["Mustard Greens", "Spinach", "Onion", "Tomato", "Ginger"],
+    ingredients: [
+      "500g mustard greens (sarson)",
+      "250g spinach",
+      "1 onion, chopped",
+      "2 tomatoes, chopped",
+      "2 green chillies",
+      "Ginger, chopped",
+      "1 tsp cornmeal",
+      "Butter",
+      "Garlic, chopped"
+    ],
+    instructions: [
+      "Boil mustard greens and spinach until soft",
+      "Blend cooked greens into coarse puree",
+      "Heat butter, add onions, ginger, garlic, green chillies",
+      "Add tomatoes, cook until soft",
+      "Add green puree and cornmeal",
+      "Simmer for 15-20 minutes, stirring occasionally",
+      "Top with butter and serve with makki ki roti"
+    ],
+    protein: 12,
+    carbs: 28,
+    fat: 18
   }
 ];
 
