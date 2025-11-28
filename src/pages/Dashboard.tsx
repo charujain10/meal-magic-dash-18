@@ -22,11 +22,29 @@ const Dashboard = () => {
       <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <ChefHat className="w-8 h-8 text-primary" />
+            <Link to="/" className="flex items-center gap-2 group">
+              <ChefHat className="w-8 h-8 text-primary transition-smooth group-hover:scale-110" />
               <h1 className="text-2xl font-display font-bold">MealFlow</h1>
-            </div>
+            </Link>
             <nav className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/planner">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  Planner
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/pantry">
+                  <Package className="w-4 h-4 mr-2" />
+                  Pantry
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/grocery">
+                  <ShoppingCart className="w-4 h-4 mr-2" />
+                  Grocery
+                </Link>
+              </Button>
               <Button variant="ghost" size="icon" asChild>
                 <Link to="/settings">
                   <Settings className="w-5 h-5" />
