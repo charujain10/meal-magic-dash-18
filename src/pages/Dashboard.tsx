@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { MealCard } from "@/components/MealCard";
 import { generateWeeklyPlan, weekDays } from "@/lib/mockData";
-import { Calendar, Package, ShoppingCart, Settings, RefreshCw, ChefHat, Target } from "lucide-react";
+import { loadMealPlan } from "@/lib/storage";
+import { Calendar, Package, ShoppingCart, Settings, RefreshCw, ChefHat, Target, Heart } from "lucide-react";
 
 const Dashboard = () => {
-  const [mealPlan] = useState(generateWeeklyPlan());
+  const [mealPlan, setMealPlan] = useState(generateWeeklyPlan());
   const todayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
   const today = weekDays[todayIndex];
   const todaysMeals = mealPlan[today];
   const mealsCooked = 3;
   const totalMeals = 21;
   const progress = (mealsCooked / totalMeals) * 100;
+
+  useEffect(() => {
+    const stored = loadMealPlan();
+    if (stored) {
+      setMealPlan(stored);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-hero">
@@ -51,9 +59,10 @@ const Dashboard = () => {
                   Grocery
                 </Link>
               </Button>
-              <Button variant="ghost" size="icon" asChild>
-                <Link to="/settings">
-                  <Settings className="w-5 h-5" />
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/favorites">
+                  <Heart className="w-4 h-4 mr-2" />
+                  Favorites
                 </Link>
               </Button>
             </nav>
@@ -129,6 +138,7 @@ const Dashboard = () => {
                   time={todaysMeals.breakfast.time}
                   calories={todaysMeals.breakfast.calories}
                   tags={todaysMeals.breakfast.tags}
+                  recipe={todaysMeals.breakfast}
                 />
               </div>
             )}
@@ -141,6 +151,7 @@ const Dashboard = () => {
                   time={todaysMeals.lunch.time}
                   calories={todaysMeals.lunch.calories}
                   tags={todaysMeals.lunch.tags}
+                  recipe={todaysMeals.lunch}
                 />
               </div>
             )}
@@ -153,6 +164,7 @@ const Dashboard = () => {
                   time={todaysMeals.dinner.time}
                   calories={todaysMeals.dinner.calories}
                   tags={todaysMeals.dinner.tags}
+                  recipe={todaysMeals.dinner}
                 />
               </div>
             )}

@@ -12,6 +12,7 @@ import CalendarView from "./pages/CalendarView";
 import NutritionTracker from "./pages/NutritionTracker";
 import Pantry from "./pages/Pantry";
 import GroceryList from "./pages/GroceryList";
+import Favorites from "./pages/Favorites";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/nutrition" element={<NutritionTracker />} />
           <Route path="/pantry" element={<Pantry />} />
           <Route path="/grocery" element={<GroceryList />} />
+          <Route path="/favorites" element={<Favorites />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

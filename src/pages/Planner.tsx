@@ -25,19 +25,28 @@ const Planner = () => {
   const mealPlanRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  // Load user preferences from localStorage on mount
+  // Load user preferences and meal plan from localStorage on mount
   useEffect(() => {
-    const preferences = localStorage.getItem("userPreferences");
+    const { loadMealPlan, loadPreferences } = require("@/lib/storage");
+    
+    // Load preferences
+    const preferences = loadPreferences();
     if (preferences) {
-      const parsed = JSON.parse(preferences);
       const fullPrefs: UserPreferences = {
-        diet: parsed.diet || [],
-        cookingTime: parsed.cookingTime,
-        vegetables: parsed.vegetables || { include: [], exclude: [] },
-        usePantryItems: parsed.usePantryItems || [],
+        diet: preferences.diet || [],
+        cookingTime: preferences.cookingTime,
+        vegetables: preferences.vegetables || { include: [], exclude: [] },
+        usePantryItems: preferences.usePantryItems || [],
       };
       setUserPreferences(fullPrefs);
-      regeneratePlanWithPreferences(fullPrefs);
+      
+      // Load saved meal plan or generate new one
+      const savedPlan = loadMealPlan();
+      if (savedPlan) {
+        setMealPlan(savedPlan);
+      } else {
+        regeneratePlanWithPreferences(fullPrefs);
+      }
     } else {
       // Show preferences wizard on first visit
       setIsPreferencesOpen(true);
@@ -52,6 +61,9 @@ const Planner = () => {
       prefs.usePantryItems
     );
     setMealPlan(newPlan);
+    // Save to localStorage
+    const { saveMealPlan } = require("@/lib/storage");
+    saveMealPlan(newPlan);
   };
 
   const handlePreferencesComplete = (preferences: UserPreferences) => {
@@ -121,13 +133,19 @@ const Planner = () => {
     const recipesToUse = filteredRecipes.length > 0 ? filteredRecipes : mockRecipes;
     const randomRecipe = recipesToUse[Math.floor(Math.random() * recipesToUse.length)];
     
-    setMealPlan((prev) => ({
-      ...prev,
+    const newPlan = {
+      ...mealPlan,
       [day]: {
-        ...prev[day],
+        ...mealPlan[day],
         [mealType]: randomRecipe,
       },
-    }));
+    };
+    setMealPlan(newPlan);
+    
+    // Save to localStorage
+    const { saveMealPlan } = require("@/lib/storage");
+    saveMealPlan(newPlan);
+    
     toast({
       title: "Meal swapped!",
       description: `Your ${mealType} for ${day} has been updated.`,
@@ -270,6 +288,7 @@ const Planner = () => {
                       time={meal.time}
                       calories={meal.calories}
                       tags={meal.tags}
+                      recipe={meal}
                       onSwap={() => handleSwapMeal(day, mealType)}
                     />
                   </div>
