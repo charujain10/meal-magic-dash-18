@@ -29,14 +29,14 @@ const Pantry = () => {
                   <ArrowLeft className="w-5 h-5" />
                 </Link>
               </Button>
-              <div className="flex items-center gap-2">
-                <ChefHat className="w-8 h-8 text-primary" />
-                <h1 className="text-2xl font-display font-bold">My Pantry</h1>
-              </div>
+              <Link to="/dashboard" className="flex items-center gap-2 group">
+                <ChefHat className="w-8 h-8 text-primary transition-smooth group-hover:scale-110" />
+                <h1 className="text-2xl font-display font-bold">MealFlow</h1>
+              </Link>
             </div>
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              Add Item
+              <span className="hidden sm:inline">Add Item</span>
             </Button>
           </div>
         </div>

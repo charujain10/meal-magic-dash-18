@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ChefHat, Clock, Leaf, Salad } from "lucide-react";
+import { ChefHat, Clock, Leaf, Salad, ArrowLeft } from "lucide-react";
 
 const Onboarding = () => {
   const navigate = useNavigate();
@@ -52,6 +52,18 @@ const Onboarding = () => {
 
   return (
     <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4">
+      {/* Back to Home Button */}
+      <Button
+        variant="ghost"
+        size="icon"
+        className="fixed top-4 left-4 z-50"
+        asChild
+      >
+        <Link to="/">
+          <ArrowLeft className="w-5 h-5" />
+        </Link>
+      </Button>
+
       <Card className="w-full max-w-2xl p-8 shadow-strong">
         {step === 1 && (
           <div className="space-y-6 animate-in fade-in duration-500">
