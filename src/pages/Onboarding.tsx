@@ -17,9 +17,13 @@ const Onboarding = () => {
   });
 
   const dietOptions = [
+    { id: "noRestrictions", label: "No Restrictions", icon: ChefHat },
     { id: "vegetarian", label: "Vegetarian", icon: Leaf },
     { id: "vegan", label: "Vegan", icon: Salad },
     { id: "keto", label: "Keto", icon: ChefHat },
+    { id: "paleo", label: "Paleo", icon: ChefHat },
+    { id: "mediterranean", label: "Mediterranean", icon: Leaf },
+    { id: "highProtein", label: "High Protein", icon: ChefHat },
     { id: "lowCarb", label: "Low Carb", icon: Clock },
   ];
 
@@ -73,8 +77,11 @@ const Onboarding = () => {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold">Select your dietary preferences</h2>
-              <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h2 className="text-xl font-semibold">Select your dietary preferences</h2>
+                <p className="text-sm text-muted-foreground mt-1">Choose all that apply to you</p>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
                 {dietOptions.map((option) => (
                   <div
                     key={option.id}
@@ -88,7 +95,7 @@ const Onboarding = () => {
                     <div className="flex items-center gap-3">
                       <Checkbox checked={preferences.diet.includes(option.id)} />
                       <option.icon className="w-5 h-5 text-primary" />
-                      <Label className="cursor-pointer font-medium">{option.label}</Label>
+                      <Label className="cursor-pointer font-medium text-sm">{option.label}</Label>
                     </div>
                   </div>
                 ))}
