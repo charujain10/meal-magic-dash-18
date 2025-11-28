@@ -2,21 +2,20 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MealCard } from "@/components/MealCard";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { generateWeeklyPlan, weekDays, mockRecipes, calculateIngredientMatch, mockPantryItems } from "@/lib/mockData";
-import { ChefHat, ArrowLeft, RefreshCw, ShoppingBasket, Settings, Clock, Calendar } from "lucide-react";
+import { CalendarDay } from "@/components/CalendarDay";
+import { generateWeeklyPlan, Recipe, MealPlan, mockRecipes } from "@/lib/mockData";
+import { ChefHat, ArrowLeft, ChevronLeft, ChevronRight, List, Settings, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const Planner = () => {
+const CalendarView = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [mealPlan, setMealPlan] = useState<Record<string, MealPlan[string]>>({});
   const [dietaryPreferences, setDietaryPreferences] = useState<string[]>([]);
   const [cookingTime, setCookingTime] = useState<number | undefined>();
-  const [mealPlan, setMealPlan] = useState(generateWeeklyPlan());
-  const [pantryItems] = useState(mockPantryItems);
   const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
   const { toast } = useToast();
 
@@ -35,16 +34,96 @@ const Planner = () => {
     { value: 60, label: "1 hour+" },
   ];
 
-  // Load user preferences from localStorage
+  // Load preferences and generate initial plan
   useEffect(() => {
     const preferences = localStorage.getItem("userPreferences");
     if (preferences) {
       const parsed = JSON.parse(preferences);
       setDietaryPreferences(parsed.diet || []);
       setCookingTime(parsed.cookingTime);
-      setMealPlan(generateWeeklyPlan(parsed.diet || [], parsed.cookingTime));
     }
+    
+    // Generate plan for the current month
+    generateMonthPlan();
   }, []);
+
+  const generateMonthPlan = () => {
+    const plan: Record<string, MealPlan[string]> = {};
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+    
+    const weeklyPlan = generateWeeklyPlan(dietaryPreferences, cookingTime);
+    
+    for (let d = new Date(firstDay); d <= lastDay; d.setDate(d.getDate() + 1)) {
+      const dateKey = d.toDateString();
+      const dayName = d.toLocaleDateString('en-US', { weekday: 'long' });
+      plan[dateKey] = weeklyPlan[dayName] || {};
+    }
+    
+    setMealPlan(plan);
+  };
+
+  const getDaysInMonth = () => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDayOfWeek = firstDay.getDay();
+    
+    const days: Date[] = [];
+    
+    // Add previous month's days
+    const prevMonthLastDay = new Date(year, month, 0).getDate();
+    for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+      days.push(new Date(year, month - 1, prevMonthLastDay - i));
+    }
+    
+    // Add current month's days
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push(new Date(year, month, i));
+    }
+    
+    // Add next month's days to complete the grid
+    const remainingDays = 42 - days.length; // 6 weeks * 7 days
+    for (let i = 1; i <= remainingDays; i++) {
+      days.push(new Date(year, month + 1, i));
+    }
+    
+    return days;
+  };
+
+  const handlePrevMonth = () => {
+    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    setCurrentDate(newDate);
+    setTimeout(generateMonthPlan, 0);
+  };
+
+  const handleNextMonth = () => {
+    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+    setCurrentDate(newDate);
+    setTimeout(generateMonthPlan, 0);
+  };
+
+  const handleDrop = (date: Date, mealType: string, recipe: Recipe) => {
+    const dateKey = date.toDateString();
+    setMealPlan((prev) => ({
+      ...prev,
+      [dateKey]: {
+        ...prev[dateKey],
+        [mealType]: recipe,
+      },
+    }));
+    
+    toast({
+      title: "Meal updated!",
+      description: `${recipe.title} added to ${mealType} on ${date.toLocaleDateString()}`,
+    });
+  };
+
+  const handleDragStart = (date: Date, mealType: string, recipe: Recipe) => {
+    // Visual feedback handled by browser
+  };
 
   const handleDietToggle = (dietId: string) => {
     setDietaryPreferences((prev) =>
@@ -55,58 +134,22 @@ const Planner = () => {
   };
 
   const handleApplyPreferences = () => {
-    const newPlan = generateWeeklyPlan(dietaryPreferences, cookingTime);
-    setMealPlan(newPlan);
-    
-    // Save to localStorage
     localStorage.setItem("userPreferences", JSON.stringify({
       diet: dietaryPreferences,
       cookingTime: cookingTime
     }));
     
+    generateMonthPlan();
     setIsPreferencesOpen(false);
+    
     toast({
       title: "Preferences updated!",
-      description: "Your meal plan has been regenerated based on your preferences.",
+      description: "Your meal plan has been regenerated.",
     });
   };
 
-  const handleSwapMeal = (day: string, mealType: string) => {
-    // Filter recipes based on dietary preferences
-    let filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
-      ? mockRecipes.filter(recipe => 
-          dietaryPreferences.some(pref => recipe.tags.includes(pref))
-        )
-      : mockRecipes;
-    
-    // Filter by cooking time if set
-    if (cookingTime) {
-      filteredRecipes = filteredRecipes.filter(recipe => recipe.time <= cookingTime);
-    }
-    
-    const recipesToUse = filteredRecipes.length > 0 ? filteredRecipes : mockRecipes;
-    const randomRecipe = recipesToUse[Math.floor(Math.random() * recipesToUse.length)];
-    
-    setMealPlan((prev) => ({
-      ...prev,
-      [day]: {
-        ...prev[day],
-        [mealType]: randomRecipe,
-      },
-    }));
-    toast({
-      title: "Meal swapped!",
-      description: `Your ${mealType} for ${day} has been updated.`,
-    });
-  };
-
-  const handleRegenerateWeek = () => {
-    setMealPlan(generateWeeklyPlan(dietaryPreferences, cookingTime));
-    toast({
-      title: "Week regenerated!",
-      description: "Your meal plan has been refreshed with new recipes.",
-    });
-  };
+  const days = getDaysInMonth();
+  const monthName = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
   return (
     <div className="min-h-screen bg-gradient-hero">
@@ -125,10 +168,11 @@ const Planner = () => {
                 <h1 className="text-2xl font-display font-bold">MealFlow</h1>
               </Link>
             </div>
+            
             <div className="flex gap-2">
               <Button variant="outline" size="icon" asChild>
-                <Link to="/calendar">
-                  <Calendar className="w-4 h-4" />
+                <Link to="/planner">
+                  <List className="w-4 h-4" />
                 </Link>
               </Button>
               
@@ -148,7 +192,6 @@ const Planner = () => {
                   </SheetHeader>
                   
                   <div className="space-y-6 mt-6">
-                    {/* Dietary Preferences */}
                     <div className="space-y-4">
                       <h3 className="font-semibold text-lg">Dietary Preferences</h3>
                       <div className="space-y-3">
@@ -173,7 +216,6 @@ const Planner = () => {
                       </div>
                     </div>
 
-                    {/* Cooking Time */}
                     <div className="space-y-4">
                       <h3 className="font-semibold text-lg">Maximum Cooking Time</h3>
                       <RadioGroup 
@@ -210,61 +252,66 @@ const Planner = () => {
                   </div>
                 </SheetContent>
               </Sheet>
-              
-              <Button onClick={handleRegenerateWeek} className="gap-2">
-                <RefreshCw className="w-4 h-4" />
-                <span className="hidden sm:inline">Regenerate</span>
-              </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8 space-y-8">
-        {weekDays.map((day) => (
-          <Card key={day} className="p-6 shadow-soft">
-            <h2 className="text-2xl font-display font-bold mb-6 flex items-center gap-2">
-              <span className="w-2 h-8 bg-primary rounded-full" />
-              {day}
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-6">
-              {["breakfast", "lunch", "dinner"].map((mealType) => {
-                const meal = mealPlan[day][mealType as keyof typeof mealPlan[typeof day]];
-                if (!meal) return null;
-                
-                const ingredientMatch = calculateIngredientMatch(meal, pantryItems);
-                
-                return (
-                  <div key={mealType} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                        {mealType}
-                      </h3>
-                      {ingredientMatch >= 50 && (
-                        <Badge variant={ingredientMatch >= 75 ? "default" : "secondary"} className="gap-1 text-xs">
-                          <ShoppingBasket className="w-3 h-3" />
-                          {ingredientMatch}% match
-                        </Badge>
-                      )}
-                    </div>
-                    <MealCard
-                      title={meal.title}
-                      image={meal.image}
-                      time={meal.time}
-                      calories={meal.calories}
-                      tags={meal.tags}
-                      onSwap={() => handleSwapMeal(day, mealType)}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </Card>
-        ))}
+      <div className="container mx-auto px-4 py-8">
+        {/* Month Navigation */}
+        <Card className="p-6 mb-6 shadow-soft">
+          <div className="flex items-center justify-between">
+            <Button variant="outline" size="icon" onClick={handlePrevMonth}>
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <h2 className="text-2xl font-display font-bold">{monthName}</h2>
+            <Button variant="outline" size="icon" onClick={handleNextMonth}>
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
+        </Card>
+
+        {/* Calendar Grid */}
+        <div className="space-y-4">
+          {/* Day Headers */}
+          <div className="grid grid-cols-7 gap-2">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div key={day} className="text-center font-semibold text-sm text-muted-foreground py-2">
+                {day}
+              </div>
+            ))}
+          </div>
+
+          {/* Calendar Days */}
+          <div className="grid grid-cols-7 gap-2">
+            {days.map((date, index) => {
+              const dateKey = date.toDateString();
+              const isCurrentMonth = date.getMonth() === currentDate.getMonth();
+              const dayMeals = mealPlan[dateKey] || {};
+
+              return (
+                <CalendarDay
+                  key={index}
+                  date={date}
+                  isCurrentMonth={isCurrentMonth}
+                  meals={dayMeals}
+                  onDrop={handleDrop}
+                  onDragStart={handleDragStart}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Instructions */}
+        <Card className="p-4 mt-6 bg-muted/30">
+          <p className="text-sm text-muted-foreground text-center">
+            💡 Drag and drop meals between days to reorganize your meal plan
+          </p>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default Planner;
+export default CalendarView;
