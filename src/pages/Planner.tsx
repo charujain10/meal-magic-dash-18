@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,11 +8,31 @@ import { ChefHat, ArrowLeft, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Planner = () => {
+  const [dietaryPreferences, setDietaryPreferences] = useState<string[]>([]);
   const [mealPlan, setMealPlan] = useState(generateWeeklyPlan());
   const { toast } = useToast();
 
+  // Load dietary preferences from localStorage
+  useEffect(() => {
+    const preferences = localStorage.getItem("userPreferences");
+    if (preferences) {
+      const parsed = JSON.parse(preferences);
+      setDietaryPreferences(parsed.diet || []);
+      setMealPlan(generateWeeklyPlan(parsed.diet || []));
+    }
+  }, []);
+
   const handleSwapMeal = (day: string, mealType: string) => {
-    const randomRecipe = mockRecipes[Math.floor(Math.random() * mockRecipes.length)];
+    // Filter recipes based on dietary preferences
+    const filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
+      ? mockRecipes.filter(recipe => 
+          dietaryPreferences.some(pref => recipe.tags.includes(pref))
+        )
+      : mockRecipes;
+    
+    const recipesToUse = filteredRecipes.length > 0 ? filteredRecipes : mockRecipes;
+    const randomRecipe = recipesToUse[Math.floor(Math.random() * recipesToUse.length)];
+    
     setMealPlan((prev) => ({
       ...prev,
       [day]: {
@@ -27,7 +47,7 @@ const Planner = () => {
   };
 
   const handleRegenerateWeek = () => {
-    setMealPlan(generateWeeklyPlan());
+    setMealPlan(generateWeeklyPlan(dietaryPreferences));
     toast({
       title: "Week regenerated!",
       description: "Your meal plan has been refreshed with new recipes.",
