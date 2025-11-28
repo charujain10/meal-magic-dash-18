@@ -34,9 +34,9 @@ const Index = () => {
             {/* Main Content */}
             <div className="space-y-6 animate-in fade-in duration-700">
               <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] tracking-tight">
-                Meal Planning,
+                Plan your meals,
                 <br />
-                <span className="gradient-primary bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   Made Simple
                 </span>
               </h1>
