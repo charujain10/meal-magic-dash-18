@@ -5,37 +5,64 @@ import { ChefHat, Calendar, Package, ShoppingCart, Sparkles } from "lucide-react
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-hero">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
-        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-700">
-          <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-4">
-            <ChefHat className="w-12 h-12 text-primary" />
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight">
-            Plan Your Meals,
-            <br />
-            <span className="gradient-warm bg-clip-text text-transparent">
-              Simplify Your Life
-            </span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Stop stressing about what to cook. Get personalized meal plans that fit your lifestyle, 
-            dietary preferences, and schedule.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button asChild size="lg" className="text-lg px-8 gradient-warm">
-              <Link to="/onboarding">
-                Get Started Free
-                <Sparkles className="w-5 h-5 ml-2" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg px-8">
-              <Link to="/dashboard">View Demo</Link>
-            </Button>
+      <section className="relative overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--secondary)/0.1),transparent_50%)]" />
+        
+        <div className="relative container mx-auto px-4 py-24 md:py-32">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center space-y-8 animate-in fade-in duration-700">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-card rounded-full shadow-soft border border-border">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium">Smart Meal Planning Made Simple</span>
+              </div>
+              
+              {/* Main Heading */}
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] tracking-tight">
+                Plan Your Meals,
+                <br />
+                <span className="gradient-warm bg-clip-text text-transparent">
+                  Simplify Your Life
+                </span>
+              </h1>
+              
+              {/* Subheading */}
+              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Stop stressing about what to cook. Get personalized weekly meal plans 
+                tailored to your dietary preferences, time constraints, and ingredients on hand.
+              </p>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+                <Button asChild size="lg" className="text-lg px-10 py-6 h-auto gradient-warm shadow-medium hover:shadow-strong transition-smooth">
+                  <Link to="/onboarding">
+                    Get Started Free
+                    <Sparkles className="w-5 h-5 ml-2" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-lg px-10 py-6 h-auto border-2 hover:bg-muted/50">
+                  <Link to="/dashboard">View Demo</Link>
+                </Button>
+              </div>
+              
+              {/* Social Proof */}
+              <div className="flex items-center justify-center gap-8 pt-8 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <ChefHat className="w-4 h-4 text-primary" />
+                  <span>10,000+ meal plans created</span>
+                </div>
+                <div className="hidden sm:block w-1 h-1 rounded-full bg-muted-foreground/30" />
+                <div className="hidden sm:flex items-center gap-2">
+                  <span>⭐⭐⭐⭐⭐</span>
+                  <span>4.9/5 rating</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
