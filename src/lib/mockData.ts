@@ -225,15 +225,20 @@ export interface MealPlan {
   };
 }
 
-export const generateWeeklyPlan = (dietaryPreferences: string[] = []): MealPlan => {
+export const generateWeeklyPlan = (dietaryPreferences: string[] = [], maxCookingTime?: number): MealPlan => {
   const plan: MealPlan = {};
   
   // Filter recipes based on dietary preferences
-  const filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
+  let filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
     ? mockRecipes.filter(recipe => 
         dietaryPreferences.some(pref => recipe.tags.includes(pref))
       )
     : mockRecipes;
+  
+  // Filter by cooking time if specified
+  if (maxCookingTime) {
+    filteredRecipes = filteredRecipes.filter(recipe => recipe.time <= maxCookingTime);
+  }
   
   // If no recipes match, fall back to all recipes
   const recipesToUse = filteredRecipes.length > 0 ? filteredRecipes : mockRecipes;
@@ -247,4 +252,16 @@ export const generateWeeklyPlan = (dietaryPreferences: string[] = []): MealPlan 
   });
   
   return plan;
+};
+
+// Helper function to calculate ingredient match percentage
+export const calculateIngredientMatch = (recipe: Recipe, pantryItems: PantryItem[]): number => {
+  const pantryIngredients = pantryItems.map(item => item.name.toLowerCase());
+  const matchedIngredients = recipe.ingredients.filter(ingredient => 
+    pantryIngredients.some(pantryItem => 
+      ingredient.toLowerCase().includes(pantryItem) || 
+      pantryItem.includes(ingredient.toLowerCase().split(' ')[0])
+    )
+  );
+  return Math.round((matchedIngredients.length / recipe.ingredients.length) * 100);
 };

@@ -2,33 +2,42 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { MealCard } from "@/components/MealCard";
-import { generateWeeklyPlan, weekDays, mockRecipes } from "@/lib/mockData";
-import { ChefHat, ArrowLeft, RefreshCw } from "lucide-react";
+import { generateWeeklyPlan, weekDays, mockRecipes, calculateIngredientMatch, mockPantryItems } from "@/lib/mockData";
+import { ChefHat, ArrowLeft, RefreshCw, ShoppingBasket } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Planner = () => {
   const [dietaryPreferences, setDietaryPreferences] = useState<string[]>([]);
+  const [cookingTime, setCookingTime] = useState<number | undefined>();
   const [mealPlan, setMealPlan] = useState(generateWeeklyPlan());
+  const [pantryItems] = useState(mockPantryItems);
   const { toast } = useToast();
 
-  // Load dietary preferences from localStorage
+  // Load user preferences from localStorage
   useEffect(() => {
     const preferences = localStorage.getItem("userPreferences");
     if (preferences) {
       const parsed = JSON.parse(preferences);
       setDietaryPreferences(parsed.diet || []);
-      setMealPlan(generateWeeklyPlan(parsed.diet || []));
+      setCookingTime(parsed.cookingTime);
+      setMealPlan(generateWeeklyPlan(parsed.diet || [], parsed.cookingTime));
     }
   }, []);
 
   const handleSwapMeal = (day: string, mealType: string) => {
     // Filter recipes based on dietary preferences
-    const filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
+    let filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
       ? mockRecipes.filter(recipe => 
           dietaryPreferences.some(pref => recipe.tags.includes(pref))
         )
       : mockRecipes;
+    
+    // Filter by cooking time if set
+    if (cookingTime) {
+      filteredRecipes = filteredRecipes.filter(recipe => recipe.time <= cookingTime);
+    }
     
     const recipesToUse = filteredRecipes.length > 0 ? filteredRecipes : mockRecipes;
     const randomRecipe = recipesToUse[Math.floor(Math.random() * recipesToUse.length)];
@@ -47,7 +56,7 @@ const Planner = () => {
   };
 
   const handleRegenerateWeek = () => {
-    setMealPlan(generateWeeklyPlan(dietaryPreferences));
+    setMealPlan(generateWeeklyPlan(dietaryPreferences, cookingTime));
     toast({
       title: "Week regenerated!",
       description: "Your meal plan has been refreshed with new recipes.",
@@ -90,11 +99,23 @@ const Planner = () => {
             <div className="grid md:grid-cols-3 gap-6">
               {["breakfast", "lunch", "dinner"].map((mealType) => {
                 const meal = mealPlan[day][mealType as keyof typeof mealPlan[typeof day]];
-                return meal ? (
+                if (!meal) return null;
+                
+                const ingredientMatch = calculateIngredientMatch(meal, pantryItems);
+                
+                return (
                   <div key={mealType} className="space-y-2">
-                    <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-                      {mealType}
-                    </h3>
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                        {mealType}
+                      </h3>
+                      {ingredientMatch >= 50 && (
+                        <Badge variant={ingredientMatch >= 75 ? "default" : "secondary"} className="gap-1 text-xs">
+                          <ShoppingBasket className="w-3 h-3" />
+                          {ingredientMatch}% match
+                        </Badge>
+                      )}
+                    </div>
                     <MealCard
                       title={meal.title}
                       image={meal.image}
@@ -104,7 +125,7 @@ const Planner = () => {
                       onSwap={() => handleSwapMeal(day, mealType)}
                     />
                   </div>
-                ) : null;
+                );
               })}
             </div>
           </Card>

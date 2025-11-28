@@ -50,7 +50,25 @@ const Onboarding = () => {
   };
 
   const handleComplete = () => {
-    localStorage.setItem("mealPlanPreferences", JSON.stringify(preferences));
+    // Map diet IDs to the actual tag names used in recipes
+    const dietMap: Record<string, string> = {
+      noRestrictions: "No Restrictions",
+      vegetarian: "Vegetarian",
+      vegan: "Vegan",
+      keto: "Keto",
+      paleo: "Paleo",
+      mediterranean: "Mediterranean",
+      highProtein: "High Protein",
+      lowCarb: "Low Carb"
+    };
+    
+    const mappedPreferences = {
+      diet: preferences.diet.map(d => dietMap[d] || d),
+      cookingTime: parseInt(preferences.cookingTime),
+      skillLevel: preferences.skillLevel
+    };
+    
+    localStorage.setItem("userPreferences", JSON.stringify(mappedPreferences));
     navigate("/dashboard");
   };
 
