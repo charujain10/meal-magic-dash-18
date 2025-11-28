@@ -34,6 +34,9 @@ const Planner = () => {
       };
       setUserPreferences(fullPrefs);
       regeneratePlanWithPreferences(fullPrefs);
+    } else {
+      // Show preferences wizard on first visit
+      setIsPreferencesOpen(true);
     }
   }, []);
 
@@ -61,11 +64,29 @@ const Planner = () => {
 
   const handleSwapMeal = (day: string, mealType: string) => {
     // Filter recipes with same logic as plan generation
-    let filteredRecipes = userPreferences.diet.length > 0 && !userPreferences.diet.includes("No Restrictions")
-      ? mockRecipes.filter(recipe => 
-          userPreferences.diet.some(pref => recipe.tags.includes(pref))
-        )
-      : mockRecipes;
+    let filteredRecipes = mockRecipes;
+    
+    if (userPreferences.diet.length > 0 && !userPreferences.diet.includes("No Restrictions")) {
+      const strictFilters = userPreferences.diet.filter(pref => 
+        pref === "Vegetarian" || pref === "Vegan"
+      );
+      const flexibleFilters = userPreferences.diet.filter(pref => 
+        pref !== "Vegetarian" && pref !== "Vegan"
+      );
+      
+      filteredRecipes = mockRecipes.filter(recipe => {
+        if (strictFilters.length > 0) {
+          const hasStrictFilter = strictFilters.some(filter => recipe.tags.includes(filter));
+          if (!hasStrictFilter) return false;
+        }
+        
+        if (flexibleFilters.length > 0) {
+          return flexibleFilters.some(pref => recipe.tags.includes(pref));
+        }
+        
+        return true;
+      });
+    }
     
     if (userPreferences.cookingTime) {
       filteredRecipes = filteredRecipes.filter(recipe => recipe.time <= userPreferences.cookingTime!);

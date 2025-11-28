@@ -242,11 +242,33 @@ export const generateWeeklyPlan = (
   const plan: MealPlan = {};
   
   // Filter recipes based on dietary preferences
-  let filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
-    ? mockRecipes.filter(recipe => 
-        dietaryPreferences.some(pref => recipe.tags.includes(pref))
-      )
-    : mockRecipes;
+  let filteredRecipes = mockRecipes;
+  
+  if (dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")) {
+    // Separate strict filters (Vegetarian/Vegan) from flexible filters
+    const strictFilters = dietaryPreferences.filter(pref => 
+      pref === "Vegetarian" || pref === "Vegan"
+    );
+    const flexibleFilters = dietaryPreferences.filter(pref => 
+      pref !== "Vegetarian" && pref !== "Vegan"
+    );
+    
+    filteredRecipes = mockRecipes.filter(recipe => {
+      // If Vegetarian or Vegan is selected, recipe MUST have that tag
+      if (strictFilters.length > 0) {
+        const hasStrictFilter = strictFilters.some(filter => recipe.tags.includes(filter));
+        if (!hasStrictFilter) return false;
+      }
+      
+      // For other preferences, show recipes that match ANY of them
+      // If no flexible filters, all recipes pass this check
+      if (flexibleFilters.length > 0) {
+        return flexibleFilters.some(pref => recipe.tags.includes(pref));
+      }
+      
+      return true;
+    });
+  }
   
   // Filter by cooking time if specified
   if (maxCookingTime) {
