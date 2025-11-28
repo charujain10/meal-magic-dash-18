@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { MealCard } from "@/components/MealCard";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { PreferencesWizard, UserPreferences } from "@/components/PreferencesWizard";
+import { PreferencesSummary } from "@/components/PreferencesSummary";
+import { WeekCalendar } from "@/components/WeekCalendar";
 import { generateWeeklyPlan, weekDays, mockRecipes, calculateIngredientMatch, mockPantryItems } from "@/lib/mockData";
 import { ChefHat, ArrowLeft, RefreshCw, ShoppingBasket, Settings, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -19,6 +21,8 @@ const Planner = () => {
   const [mealPlan, setMealPlan] = useState(generateWeeklyPlan());
   const [pantryItems] = useState(mockPantryItems);
   const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const mealPlanRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   // Load user preferences from localStorage on mount
@@ -127,6 +131,17 @@ const Planner = () => {
     });
   };
 
+  const handleDayClick = (day: string) => {
+    setSelectedDay(day);
+    // Scroll to the specific day in the meal plan
+    setTimeout(() => {
+      const dayElement = document.getElementById(`day-${day}`);
+      if (dayElement) {
+        dayElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-hero">
       {/* Header */}
@@ -182,8 +197,38 @@ const Planner = () => {
       </header>
 
       <div className="container mx-auto px-4 py-8 space-y-8">
-        {weekDays.map((day) => (
-          <Card key={day} className="p-6 shadow-soft">
+        {/* Preferences Summary */}
+        <PreferencesSummary 
+          preferences={userPreferences} 
+          onEdit={() => setIsPreferencesOpen(true)}
+        />
+
+        {/* Week Calendar View */}
+        <WeekCalendar 
+          mealPlan={mealPlan} 
+          onDayClick={handleDayClick}
+        />
+
+        {/* Detailed Meal Plan */}
+        <div className="space-y-8" ref={mealPlanRef}>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-display font-bold">Detailed Meal Plan</h2>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/calendar">
+                <Calendar className="w-4 h-4 mr-2" />
+                Full Calendar
+              </Link>
+            </Button>
+          </div>
+
+          {weekDays.map((day) => (
+            <Card 
+              key={day} 
+              id={`day-${day}`}
+              className={`p-6 shadow-soft transition-smooth ${
+                selectedDay === day ? "border-2 border-primary shadow-medium" : ""
+              }`}
+            >
             <h2 className="text-2xl font-display font-bold mb-6 flex items-center gap-2">
               <span className="w-2 h-8 bg-primary rounded-full" />
               {day}
@@ -221,8 +266,9 @@ const Planner = () => {
                 );
               })}
             </div>
-          </Card>
-        ))}
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
