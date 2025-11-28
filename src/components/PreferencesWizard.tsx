@@ -67,14 +67,27 @@ export const PreferencesWizard = ({ onComplete, initialPreferences }: Preference
   const [activeCategory, setActiveCategory] = useState(pantryCategories[0]);
 
   const handleDietToggle = (dietId: string) => {
-    setPreferences((prev) => ({
-      ...prev,
-      diet: prev.diet.includes(dietId)
-        ? prev.diet.filter((d) => d !== dietId)
-        : [...prev.diet, dietId],
-    }));
-  };
+    setPreferences((prev) => {
+      // If selecting "No Restrictions", clear all other diets
+      if (dietId === "No Restrictions") {
+        return {
+          ...prev,
+          diet: prev.diet.includes("No Restrictions") ? [] : ["No Restrictions"],
+        };
+      }
 
+      // For specific diets, remove "No Restrictions" and toggle the selected one
+      const current = prev.diet.filter((d) => d !== "No Restrictions");
+      const nextDiet = current.includes(dietId)
+        ? current.filter((d) => d !== dietId)
+        : [...current, dietId];
+
+      return {
+        ...prev,
+        diet: nextDiet,
+      };
+    });
+  };
   const handlePantryToggle = (itemId: string) => {
     setPreferences((prev) => ({
       ...prev,

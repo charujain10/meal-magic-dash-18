@@ -67,25 +67,32 @@ const Planner = () => {
   };
 
   const handleSwapMeal = (day: string, mealType: string) => {
+    // Normalize dietary preferences: if "No Restrictions" plus others are selected,
+    // ignore "No Restrictions" and honor the specific preferences.
+    const effectivePrefs =
+      userPreferences.diet.includes("No Restrictions") && userPreferences.diet.length > 1
+        ? userPreferences.diet.filter((pref) => pref !== "No Restrictions")
+        : userPreferences.diet;
+
     // Filter recipes with same logic as plan generation
     let filteredRecipes = mockRecipes;
     
-    if (userPreferences.diet.length > 0 && !userPreferences.diet.includes("No Restrictions")) {
-      const strictFilters = userPreferences.diet.filter(pref => 
-        pref === "Vegetarian" || pref === "Vegan"
+    if (effectivePrefs.length > 0 && !effectivePrefs.includes("No Restrictions")) {
+      const strictFilters = effectivePrefs.filter(
+        (pref) => pref === "Vegetarian" || pref === "Vegan"
       );
-      const flexibleFilters = userPreferences.diet.filter(pref => 
-        pref !== "Vegetarian" && pref !== "Vegan"
+      const flexibleFilters = effectivePrefs.filter(
+        (pref) => pref !== "Vegetarian" && pref !== "Vegan"
       );
       
-      filteredRecipes = mockRecipes.filter(recipe => {
+      filteredRecipes = mockRecipes.filter((recipe) => {
         if (strictFilters.length > 0) {
-          const hasStrictFilter = strictFilters.some(filter => recipe.tags.includes(filter));
+          const hasStrictFilter = strictFilters.some((filter) => recipe.tags.includes(filter));
           if (!hasStrictFilter) return false;
         }
         
         if (flexibleFilters.length > 0) {
-          return flexibleFilters.some(pref => recipe.tags.includes(pref));
+          return flexibleFilters.some((pref) => recipe.tags.includes(pref));
         }
         
         return true;
@@ -93,14 +100,18 @@ const Planner = () => {
     }
     
     if (userPreferences.cookingTime) {
-      filteredRecipes = filteredRecipes.filter(recipe => recipe.time <= userPreferences.cookingTime!);
+      filteredRecipes = filteredRecipes.filter(
+        (recipe) => recipe.time <= userPreferences.cookingTime!
+      );
     }
     
     if (userPreferences.vegetables) {
-      filteredRecipes = filteredRecipes.filter(recipe => {
+      filteredRecipes = filteredRecipes.filter((recipe) => {
         const recipeVeggies = recipe.vegetables || [];
         if (userPreferences.vegetables.exclude.length > 0) {
-          const hasExcluded = recipeVeggies.some(v => userPreferences.vegetables.exclude.includes(v));
+          const hasExcluded = recipeVeggies.some((v) =>
+            userPreferences.vegetables.exclude.includes(v)
+          );
           if (hasExcluded) return false;
         }
         return true;
@@ -122,7 +133,6 @@ const Planner = () => {
       description: `Your ${mealType} for ${day} has been updated.`,
     });
   };
-
   const handleRegenerateWeek = () => {
     regeneratePlanWithPreferences(userPreferences);
     toast({

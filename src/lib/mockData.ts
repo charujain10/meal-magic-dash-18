@@ -213,136 +213,136 @@ export const mockRecipes: Recipe[] = [
 ];
 
 export const mockPantryItems: PantryItem[] = [
-  // Vegetables (21 items)
-  { id: "v1", name: "Spinach", quantity: "1 bunch", category: "Vegetables" },
-  { id: "v2", name: "Kale", quantity: "1 bunch", category: "Vegetables" },
-  { id: "v3", name: "Broccoli", quantity: "2 heads", category: "Vegetables" },
-  { id: "v4", name: "Bell Peppers", quantity: "4 units", category: "Vegetables" },
-  { id: "v5", name: "Mushrooms", quantity: "1 lb", category: "Vegetables" },
-  { id: "v6", name: "Onions", quantity: "3 units", category: "Vegetables" },
-  { id: "v7", name: "Garlic", quantity: "2 bulbs", category: "Vegetables" },
-  { id: "v8", name: "Tomatoes", quantity: "6 units", category: "Vegetables" },
-  { id: "v9", name: "Carrots", quantity: "1 lb", category: "Vegetables" },
-  { id: "v10", name: "Cucumber", quantity: "3 units", category: "Vegetables" },
-  { id: "v11", name: "Lettuce", quantity: "2 heads", category: "Vegetables" },
+  // Vegetables (21 items) - common Indian household
+  { id: "v1", name: "Onion", quantity: "1 kg", category: "Vegetables" },
+  { id: "v2", name: "Tomato", quantity: "1 kg", category: "Vegetables" },
+  { id: "v3", name: "Potato", quantity: "2 kg", category: "Vegetables" },
+  { id: "v4", name: "Green Chilli", quantity: "100 g", category: "Vegetables" },
+  { id: "v5", name: "Coriander Leaves", quantity: "1 bunch", category: "Vegetables" },
+  { id: "v6", name: "Garlic", quantity: "2 bulbs", category: "Vegetables" },
+  { id: "v7", name: "Ginger", quantity: "200 g", category: "Vegetables" },
+  { id: "v8", name: "Spinach", quantity: "1 bunch", category: "Vegetables" },
+  { id: "v9", name: "Fenugreek Leaves", quantity: "1 bunch", category: "Vegetables" },
+  { id: "v10", name: "Ladyfinger (Bhindi)", quantity: "500 g", category: "Vegetables" },
+  { id: "v11", name: "Bottle Gourd (Lauki)", quantity: "1 unit", category: "Vegetables" },
   { id: "v12", name: "Cauliflower", quantity: "1 head", category: "Vegetables" },
-  { id: "v13", name: "Zucchini", quantity: "4 units", category: "Vegetables" },
-  { id: "v14", name: "Eggplant", quantity: "2 units", category: "Vegetables" },
-  { id: "v15", name: "Asparagus", quantity: "1 bunch", category: "Vegetables" },
-  { id: "v16", name: "Sweet Potato", quantity: "2 lbs", category: "Vegetables" },
-  { id: "v17", name: "Potato", quantity: "5 lbs", category: "Vegetables" },
-  { id: "v18", name: "Green Beans", quantity: "1 lb", category: "Vegetables" },
-  { id: "v19", name: "Cabbage", quantity: "1 head", category: "Vegetables" },
-  { id: "v20", name: "Celery", quantity: "1 bunch", category: "Vegetables" },
-  { id: "v21", name: "Ginger", quantity: "200g", category: "Vegetables" },
+  { id: "v13", name: "Cabbage", quantity: "1 head", category: "Vegetables" },
+  { id: "v14", name: "Carrot", quantity: "500 g", category: "Vegetables" },
+  { id: "v15", name: "Peas (Fresh/Frozen)", quantity: "500 g", category: "Vegetables" },
+  { id: "v16", name: "Brinjal (Eggplant)", quantity: "500 g", category: "Vegetables" },
+  { id: "v17", name: "Capsicum", quantity: "500 g", category: "Vegetables" },
+  { id: "v18", name: "Cucumber", quantity: "500 g", category: "Vegetables" },
+  { id: "v19", name: "Radish", quantity: "500 g", category: "Vegetables" },
+  { id: "v20", name: "Pumpkin", quantity: "1 unit", category: "Vegetables" },
+  { id: "v21", name: "Drumstick", quantity: "500 g", category: "Vegetables" },
 
   // Pulses & Lentils (11 items)
-  { id: "p1", name: "Chickpeas", quantity: "2 lbs", category: "Pulses & Lentils" },
-  { id: "p2", name: "Red Lentils", quantity: "1 lb", category: "Pulses & Lentils" },
-  { id: "p3", name: "Green Lentils", quantity: "1 lb", category: "Pulses & Lentils" },
-  { id: "p4", name: "Black Beans", quantity: "2 lbs", category: "Pulses & Lentils" },
-  { id: "p5", name: "Kidney Beans", quantity: "1 lb", category: "Pulses & Lentils" },
-  { id: "p6", name: "Pinto Beans", quantity: "1 lb", category: "Pulses & Lentils" },
-  { id: "p7", name: "Navy Beans", quantity: "1 lb", category: "Pulses & Lentils" },
-  { id: "p8", name: "Split Peas", quantity: "1 lb", category: "Pulses & Lentils" },
-  { id: "p9", name: "Mung Beans", quantity: "500g", category: "Pulses & Lentils" },
-  { id: "p10", name: "Soybeans", quantity: "1 lb", category: "Pulses & Lentils" },
-  { id: "p11", name: "Lima Beans", quantity: "1 lb", category: "Pulses & Lentils" },
+  { id: "p1", name: "Toor Dal", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p2", name: "Moong Dal", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p3", name: "Masoor Dal", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p4", name: "Chana Dal", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p5", name: "Urad Dal", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p6", name: "Rajma (Kidney Beans)", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p7", name: "Kabuli Chana", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p8", name: "Black Chana", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p9", name: "Green Gram (Whole Moong)", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p10", name: "Lobia (Black Eyed Peas)", quantity: "1 kg", category: "Pulses & Lentils" },
+  { id: "p11", name: "Soya Chunks", quantity: "500 g", category: "Pulses & Lentils" },
 
   // Grains & Rice (13 items)
-  { id: "g1", name: "Basmati Rice", quantity: "5 lbs", category: "Grains & Rice" },
-  { id: "g2", name: "Brown Rice", quantity: "5 lbs", category: "Grains & Rice" },
-  { id: "g3", name: "Jasmine Rice", quantity: "2 lbs", category: "Grains & Rice" },
-  { id: "g4", name: "Quinoa", quantity: "2 lbs", category: "Grains & Rice" },
-  { id: "g5", name: "Oats", quantity: "3 lbs", category: "Grains & Rice" },
-  { id: "g6", name: "Pasta", quantity: "2 boxes", category: "Grains & Rice" },
-  { id: "g7", name: "Couscous", quantity: "1 lb", category: "Grains & Rice" },
-  { id: "g8", name: "Bulgur Wheat", quantity: "1 lb", category: "Grains & Rice" },
-  { id: "g9", name: "Barley", quantity: "1 lb", category: "Grains & Rice" },
-  { id: "g10", name: "Millet", quantity: "1 lb", category: "Grains & Rice" },
-  { id: "g11", name: "Bread", quantity: "2 loaves", category: "Grains & Rice" },
-  { id: "g12", name: "Flour", quantity: "5 lbs", category: "Grains & Rice" },
-  { id: "g13", name: "Cornmeal", quantity: "2 lbs", category: "Grains & Rice" },
+  { id: "g1", name: "Basmati Rice", quantity: "5 kg", category: "Grains & Rice" },
+  { id: "g2", name: "Regular Rice", quantity: "5 kg", category: "Grains & Rice" },
+  { id: "g3", name: "Wheat Flour (Atta)", quantity: "10 kg", category: "Grains & Rice" },
+  { id: "g4", name: "Maida (Refined Flour)", quantity: "2 kg", category: "Grains & Rice" },
+  { id: "g5", name: "Suji (Rava)", quantity: "2 kg", category: "Grains & Rice" },
+  { id: "g6", name: "Poha", quantity: "1 kg", category: "Grains & Rice" },
+  { id: "g7", name: "Dalia (Broken Wheat)", quantity: "1 kg", category: "Grains & Rice" },
+  { id: "g8", name: "Oats", quantity: "1 kg", category: "Grains & Rice" },
+  { id: "g9", name: "Vermicelli (Seviyan)", quantity: "500 g", category: "Grains & Rice" },
+  { id: "g10", name: "Multigrain Flour", quantity: "2 kg", category: "Grains & Rice" },
+  { id: "g11", name: "Bread", quantity: "1 loaf", category: "Grains & Rice" },
+  { id: "g12", name: "Corn Flour", quantity: "1 kg", category: "Grains & Rice" },
+  { id: "g13", name: "Millet (Jowar/Bajra)", quantity: "2 kg", category: "Grains & Rice" },
 
   // Proteins (13 items)
-  { id: "pr1", name: "Chicken Breast", quantity: "2 lbs", expiration: "2024-01-15", category: "Proteins" },
-  { id: "pr2", name: "Ground Beef", quantity: "1.5 lbs", expiration: "2024-01-12", category: "Proteins" },
-  { id: "pr3", name: "Salmon", quantity: "4 fillets", expiration: "2024-01-10", category: "Proteins" },
-  { id: "pr4", name: "Shrimp", quantity: "1 lb", expiration: "2024-01-08", category: "Proteins" },
-  { id: "pr5", name: "Pork Chops", quantity: "6 pieces", expiration: "2024-01-14", category: "Proteins" },
-  { id: "pr6", name: "Lamb", quantity: "2 lbs", expiration: "2024-01-16", category: "Proteins" },
-  { id: "pr7", name: "Turkey", quantity: "1 lb", expiration: "2024-01-13", category: "Proteins" },
-  { id: "pr8", name: "Tofu", quantity: "3 blocks", expiration: "2024-01-20", category: "Proteins" },
-  { id: "pr9", name: "Tempeh", quantity: "2 blocks", expiration: "2024-01-18", category: "Proteins" },
-  { id: "pr10", name: "Bacon", quantity: "1 lb", expiration: "2024-01-15", category: "Proteins" },
-  { id: "pr11", name: "Sausages", quantity: "8 links", expiration: "2024-01-12", category: "Proteins" },
-  { id: "pr12", name: "Tuna Steak", quantity: "2 steaks", expiration: "2024-01-10", category: "Proteins" },
-  { id: "pr13", name: "Eggs", quantity: "18 eggs", expiration: "2024-01-25", category: "Proteins" },
+  { id: "pr1", name: "Paneer", quantity: "500 g", category: "Proteins" },
+  { id: "pr2", name: "Curd (Dahi)", quantity: "1 kg", category: "Proteins" },
+  { id: "pr3", name: "Milk", quantity: "2 litres", category: "Proteins" },
+  { id: "pr4", name: "Eggs", quantity: "12 eggs", category: "Proteins" },
+  { id: "pr5", name: "Chicken", quantity: "1 kg", category: "Proteins" },
+  { id: "pr6", name: "Fish", quantity: "1 kg", category: "Proteins" },
+  { id: "pr7", name: "Mutton", quantity: "1 kg", category: "Proteins" },
+  { id: "pr8", name: "Tofu", quantity: "500 g", category: "Proteins" },
+  { id: "pr9", name: "Soya Granules", quantity: "500 g", category: "Proteins" },
+  { id: "pr10", name: "Sprouts", quantity: "500 g", category: "Proteins" },
+  { id: "pr11", name: "Peanut Chikki", quantity: "500 g", category: "Proteins" },
+  { id: "pr12", name: "Cheese Cubes", quantity: "500 g", category: "Proteins" },
+  { id: "pr13", name: "Tinned Tuna", quantity: "2 cans", category: "Proteins" },
 
   // Dairy (10 items)
-  { id: "d1", name: "Milk", quantity: "1 gallon", expiration: "2024-01-20", category: "Dairy" },
-  { id: "d2", name: "Greek Yogurt", quantity: "32 oz", expiration: "2024-01-18", category: "Dairy" },
-  { id: "d3", name: "Cheddar Cheese", quantity: "1 lb", expiration: "2024-02-01", category: "Dairy" },
-  { id: "d4", name: "Mozzarella", quantity: "1 lb", expiration: "2024-01-28", category: "Dairy" },
-  { id: "d5", name: "Parmesan", quantity: "8 oz", expiration: "2024-03-01", category: "Dairy" },
-  { id: "d6", name: "Butter", quantity: "1 lb", expiration: "2024-02-15", category: "Dairy" },
-  { id: "d7", name: "Cream Cheese", quantity: "8 oz", expiration: "2024-01-22", category: "Dairy" },
-  { id: "d8", name: "Sour Cream", quantity: "16 oz", expiration: "2024-01-19", category: "Dairy" },
-  { id: "d9", name: "Heavy Cream", quantity: "1 pint", expiration: "2024-01-17", category: "Dairy" },
-  { id: "d10", name: "Cottage Cheese", quantity: "16 oz", expiration: "2024-01-21", category: "Dairy" },
+  { id: "d1", name: "Toned Milk", quantity: "2 litres", category: "Dairy" },
+  { id: "d2", name: "Ghee", quantity: "1 kg", category: "Dairy" },
+  { id: "d3", name: "Butter", quantity: "500 g", category: "Dairy" },
+  { id: "d4", name: "Paneer (Block)", quantity: "500 g", category: "Dairy" },
+  { id: "d5", name: "Cheddar Cheese", quantity: "500 g", category: "Dairy" },
+  { id: "d6", name: "Processed Cheese Slices", quantity: "10 slices", category: "Dairy" },
+  { id: "d7", name: "Yogurt", quantity: "1 kg", category: "Dairy" },
+  { id: "d8", name: "Fresh Cream", quantity: "200 ml", category: "Dairy" },
+  { id: "d9", name: "Buttermilk", quantity: "1 litre", category: "Dairy" },
+  { id: "d10", name: "Khoya/Mawa", quantity: "500 g", category: "Dairy" },
 
   // Oils & Fats (7 items)
-  { id: "o1", name: "Olive Oil", quantity: "1 bottle (750ml)", category: "Oils & Fats" },
-  { id: "o2", name: "Coconut Oil", quantity: "16 oz jar", category: "Oils & Fats" },
-  { id: "o3", name: "Vegetable Oil", quantity: "1 bottle", category: "Oils & Fats" },
-  { id: "o4", name: "Sesame Oil", quantity: "8 oz bottle", category: "Oils & Fats" },
-  { id: "o5", name: "Avocado Oil", quantity: "16 oz bottle", category: "Oils & Fats" },
-  { id: "o6", name: "Ghee", quantity: "12 oz jar", category: "Oils & Fats" },
-  { id: "o7", name: "Peanut Oil", quantity: "16 oz bottle", category: "Oils & Fats" },
+  { id: "o1", name: "Mustard Oil", quantity: "1 litre", category: "Oils & Fats" },
+  { id: "o2", name: "Sunflower Oil", quantity: "1 litre", category: "Oils & Fats" },
+  { id: "o3", name: "Groundnut Oil", quantity: "1 litre", category: "Oils & Fats" },
+  { id: "o4", name: "Sesame Oil", quantity: "1 litre", category: "Oils & Fats" },
+  { id: "o5", name: "Coconut Oil", quantity: "1 litre", category: "Oils & Fats" },
+  { id: "o6", name: "Vanaspati", quantity: "500 g", category: "Oils & Fats" },
+  { id: "o7", name: "Olive Oil", quantity: "500 ml", category: "Oils & Fats" },
 
   // Spices & Herbs (17 items)
-  { id: "s1", name: "Salt", quantity: "1 lb", category: "Spices & Herbs" },
-  { id: "s2", name: "Black Pepper", quantity: "4 oz", category: "Spices & Herbs" },
-  { id: "s3", name: "Cumin", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s4", name: "Turmeric", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s5", name: "Paprika", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s6", name: "Coriander", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s7", name: "Cinnamon", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s8", name: "Chili Powder", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s9", name: "Oregano", quantity: "1 oz", category: "Spices & Herbs" },
-  { id: "s10", name: "Basil", quantity: "1 oz", category: "Spices & Herbs" },
-  { id: "s11", name: "Thyme", quantity: "1 oz", category: "Spices & Herbs" },
-  { id: "s12", name: "Rosemary", quantity: "1 oz", category: "Spices & Herbs" },
-  { id: "s13", name: "Bay Leaves", quantity: "0.5 oz", category: "Spices & Herbs" },
-  { id: "s14", name: "Garam Masala", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s15", name: "Curry Powder", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s16", name: "Red Chili Flakes", quantity: "2 oz", category: "Spices & Herbs" },
-  { id: "s17", name: "Nutmeg", quantity: "1 oz", category: "Spices & Herbs" },
+  { id: "s1", name: "Salt", quantity: "1 kg", category: "Spices & Herbs" },
+  { id: "s2", name: "Haldi (Turmeric)", quantity: "200 g", category: "Spices & Herbs" },
+  { id: "s3", name: "Red Chilli Powder", quantity: "200 g", category: "Spices & Herbs" },
+  { id: "s4", name: "Coriander Powder", quantity: "200 g", category: "Spices & Herbs" },
+  { id: "s5", name: "Cumin Seeds", quantity: "200 g", category: "Spices & Herbs" },
+  { id: "s6", name: "Mustard Seeds", quantity: "200 g", category: "Spices & Herbs" },
+  { id: "s7", name: "Fenugreek Seeds", quantity: "100 g", category: "Spices & Herbs" },
+  { id: "s8", name: "Garam Masala", quantity: "200 g", category: "Spices & Herbs" },
+  { id: "s9", name: "Curry Leaves (Dried)", quantity: "50 g", category: "Spices & Herbs" },
+  { id: "s10", name: "Asafoetida (Hing)", quantity: "50 g", category: "Spices & Herbs" },
+  { id: "s11", name: "Black Pepper", quantity: "100 g", category: "Spices & Herbs" },
+  { id: "s12", name: "Cloves", quantity: "50 g", category: "Spices & Herbs" },
+  { id: "s13", name: "Cardamom", quantity: "50 g", category: "Spices & Herbs" },
+  { id: "s14", name: "Cinnamon", quantity: "50 g", category: "Spices & Herbs" },
+  { id: "s15", name: "Bay Leaf", quantity: "50 g", category: "Spices & Herbs" },
+  { id: "s16", name: "Kasuri Methi", quantity: "50 g", category: "Spices & Herbs" },
+  { id: "s17", name: "Tandoori Masala", quantity: "200 g", category: "Spices & Herbs" },
 
   // Condiments & Sauces (12 items)
-  { id: "c1", name: "Soy Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
-  { id: "c2", name: "Ketchup", quantity: "1 bottle", category: "Condiments & Sauces" },
-  { id: "c3", name: "Mustard", quantity: "1 jar", category: "Condiments & Sauces" },
-  { id: "c4", name: "Mayonnaise", quantity: "1 jar", category: "Condiments & Sauces" },
-  { id: "c5", name: "Hot Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
-  { id: "c6", name: "Worcestershire Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
-  { id: "c7", name: "BBQ Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
-  { id: "c8", name: "Teriyaki Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
-  { id: "c9", name: "Fish Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
-  { id: "c10", name: "Honey", quantity: "12 oz jar", category: "Condiments & Sauces" },
-  { id: "c11", name: "Maple Syrup", quantity: "12 oz bottle", category: "Condiments & Sauces" },
-  { id: "c12", name: "Vinegar", quantity: "1 bottle", category: "Condiments & Sauces" },
+  { id: "c1", name: "Tomato Ketchup", quantity: "1 bottle", category: "Condiments & Sauces" },
+  { id: "c2", name: "Green Chilli Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
+  { id: "c3", name: "Soy Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
+  { id: "c4", name: "Vinegar", quantity: "1 bottle", category: "Condiments & Sauces" },
+  { id: "c5", name: "Tamarind Chutney", quantity: "1 jar", category: "Condiments & Sauces" },
+  { id: "c6", name: "Green Chutney", quantity: "1 jar", category: "Condiments & Sauces" },
+  { id: "c7", name: "Mixed Pickle (Achar)", quantity: "1 jar", category: "Condiments & Sauces" },
+  { id: "c8", name: "Coriander Chutney", quantity: "1 jar", category: "Condiments & Sauces" },
+  { id: "c9", name: "Chilli Garlic Sauce", quantity: "1 bottle", category: "Condiments & Sauces" },
+  { id: "c10", name: "Honey", quantity: "500 g", category: "Condiments & Sauces" },
+  { id: "c11", name: "Jaggery", quantity: "1 kg", category: "Condiments & Sauces" },
+  { id: "c12", name: "Imli Paste", quantity: "200 g", category: "Condiments & Sauces" },
 
   // Canned & Jarred (9 items)
-  { id: "cj1", name: "Canned Tomatoes", quantity: "6 cans", expiration: "2025-06-01", category: "Canned & Jarred" },
-  { id: "cj2", name: "Tomato Paste", quantity: "3 cans", expiration: "2025-05-15", category: "Canned & Jarred" },
-  { id: "cj3", name: "Coconut Milk", quantity: "4 cans", expiration: "2025-08-01", category: "Canned & Jarred" },
-  { id: "cj4", name: "Chicken Broth", quantity: "4 cartons", expiration: "2025-03-01", category: "Canned & Jarred" },
-  { id: "cj5", name: "Vegetable Broth", quantity: "4 cartons", expiration: "2025-03-01", category: "Canned & Jarred" },
-  { id: "cj6", name: "Canned Corn", quantity: "3 cans", expiration: "2025-07-01", category: "Canned & Jarred" },
-  { id: "cj7", name: "Canned Beans", quantity: "4 cans", expiration: "2025-09-01", category: "Canned & Jarred" },
-  { id: "cj8", name: "Peanut Butter", quantity: "18 oz jar", expiration: "2025-01-01", category: "Canned & Jarred" },
-  { id: "cj9", name: "Jam", quantity: "12 oz jar", expiration: "2025-02-01", category: "Canned & Jarred" },
+  { id: "cj1", name: "Canned Tomatoes", quantity: "4 cans", category: "Canned & Jarred" },
+  { id: "cj2", name: "Tomato Puree", quantity: "3 cartons", category: "Canned & Jarred" },
+  { id: "cj3", name: "Coconut Milk", quantity: "4 cans", category: "Canned & Jarred" },
+  { id: "cj4", name: "Ginger Garlic Paste", quantity: "1 jar", category: "Canned & Jarred" },
+  { id: "cj5", name: "Ready Gravies (Paneer/Butter Masala)", quantity: "2 packs", category: "Canned & Jarred" },
+  { id: "cj6", name: "Baked Beans", quantity: "2 cans", category: "Canned & Jarred" },
+  { id: "cj7", name: "Sweet Corn (Canned)", quantity: "3 cans", category: "Canned & Jarred" },
+  { id: "cj8", name: "Peanut Butter", quantity: "1 jar", category: "Canned & Jarred" },
+  { id: "cj9", name: "Jam", quantity: "1 jar", category: "Canned & Jarred" },
 ];
 
 export const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -363,29 +363,36 @@ export const generateWeeklyPlan = (
 ): MealPlan => {
   const plan: MealPlan = {};
   
+  // Normalize dietary preferences: if "No Restrictions" plus others are selected,
+  // ignore "No Restrictions" and honor the specific preferences.
+  const effectivePrefs =
+    dietaryPreferences.includes("No Restrictions") && dietaryPreferences.length > 1
+      ? dietaryPreferences.filter((pref) => pref !== "No Restrictions")
+      : dietaryPreferences;
+  
   // Filter recipes based on dietary preferences
   let filteredRecipes = mockRecipes;
   
-  if (dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")) {
+  if (effectivePrefs.length > 0 && !effectivePrefs.includes("No Restrictions")) {
     // Separate strict filters (Vegetarian/Vegan) from flexible filters
-    const strictFilters = dietaryPreferences.filter(pref => 
-      pref === "Vegetarian" || pref === "Vegan"
+    const strictFilters = effectivePrefs.filter(
+      (pref) => pref === "Vegetarian" || pref === "Vegan"
     );
-    const flexibleFilters = dietaryPreferences.filter(pref => 
-      pref !== "Vegetarian" && pref !== "Vegan"
+    const flexibleFilters = effectivePrefs.filter(
+      (pref) => pref !== "Vegetarian" && pref !== "Vegan"
     );
     
-    filteredRecipes = mockRecipes.filter(recipe => {
+    filteredRecipes = mockRecipes.filter((recipe) => {
       // If Vegetarian or Vegan is selected, recipe MUST have that tag
       if (strictFilters.length > 0) {
-        const hasStrictFilter = strictFilters.some(filter => recipe.tags.includes(filter));
+        const hasStrictFilter = strictFilters.some((filter) => recipe.tags.includes(filter));
         if (!hasStrictFilter) return false;
       }
       
       // For other preferences, show recipes that match ANY of them
       // If no flexible filters, all recipes pass this check
       if (flexibleFilters.length > 0) {
-        return flexibleFilters.some(pref => recipe.tags.includes(pref));
+        return flexibleFilters.some((pref) => recipe.tags.includes(pref));
       }
       
       return true;
@@ -394,17 +401,17 @@ export const generateWeeklyPlan = (
   
   // Filter by cooking time if specified
   if (maxCookingTime) {
-    filteredRecipes = filteredRecipes.filter(recipe => recipe.time <= maxCookingTime);
+    filteredRecipes = filteredRecipes.filter((recipe) => recipe.time <= maxCookingTime);
   }
   
   // Filter by vegetable preferences
   if (vegetablePrefs) {
-    filteredRecipes = filteredRecipes.filter(recipe => {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
       const recipeVeggies = recipe.vegetables || [];
       
       // Exclude recipes with excluded vegetables
       if (vegetablePrefs.exclude.length > 0) {
-        const hasExcluded = recipeVeggies.some(v => vegetablePrefs.exclude.includes(v));
+        const hasExcluded = recipeVeggies.some((v) => vegetablePrefs.exclude.includes(v));
         if (hasExcluded) return false;
       }
       
@@ -417,8 +424,8 @@ export const generateWeeklyPlan = (
       filteredRecipes.sort((a, b) => {
         const aVeggies = a.vegetables || [];
         const bVeggies = b.vegetables || [];
-        const aMatches = aVeggies.filter(v => vegetablePrefs.include.includes(v)).length;
-        const bMatches = bVeggies.filter(v => vegetablePrefs.include.includes(v)).length;
+        const aMatches = aVeggies.filter((v) => vegetablePrefs.include.includes(v)).length;
+        const bMatches = bVeggies.filter((v) => vegetablePrefs.include.includes(v)).length;
         return bMatches - aMatches;
       });
     }
@@ -426,15 +433,15 @@ export const generateWeeklyPlan = (
   
   // Prioritize recipes with pantry items
   if (pantryItemIds && pantryItemIds.length > 0) {
-    const pantryItems = mockPantryItems.filter(item => pantryItemIds.includes(item.id));
-    const pantryNames = pantryItems.map(item => item.name.toLowerCase());
+    const pantryItems = mockPantryItems.filter((item) => pantryItemIds.includes(item.id));
+    const pantryNames = pantryItems.map((item) => item.name.toLowerCase());
     
     filteredRecipes.sort((a, b) => {
-      const aMatches = a.ingredients.filter(ing => 
-        pantryNames.some(pItem => ing.toLowerCase().includes(pItem))
+      const aMatches = a.ingredients.filter((ing) =>
+        pantryNames.some((pItem) => ing.toLowerCase().includes(pItem))
       ).length;
-      const bMatches = b.ingredients.filter(ing => 
-        pantryNames.some(pItem => ing.toLowerCase().includes(pItem))
+      const bMatches = b.ingredients.filter((ing) =>
+        pantryNames.some((pItem) => ing.toLowerCase().includes(pItem))
       ).length;
       return bMatches - aMatches;
     });
