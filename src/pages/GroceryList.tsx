@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { ChefHat, ArrowLeft, Download, Share2 } from "lucide-react";
+import { ChefHat, ArrowLeft, Download, Share2, History } from "lucide-react";
+import { loadGroceryList, saveGroceryList, saveGroceryHistory } from "@/lib/storage";
+import { useToast } from "@/hooks/use-toast";
 
 interface GroceryItem {
   id: string;
@@ -15,6 +17,7 @@ interface GroceryItem {
 }
 
 const GroceryList = () => {
+  const { toast } = useToast();
   const [groceryItems, setGroceryItems] = useState<GroceryItem[]>([
     { id: "1", name: "Chicken Breast", quantity: "2 lbs", category: "Protein", checked: false },
     { id: "2", name: "Quinoa", quantity: "1 bag", category: "Grains", checked: false },
@@ -28,6 +31,19 @@ const GroceryList = () => {
     { id: "10", name: "Brown Rice", quantity: "2 lbs", category: "Grains", checked: false },
   ]);
 
+  // Load grocery list from localStorage
+  useEffect(() => {
+    const stored = loadGroceryList();
+    if (stored) {
+      setGroceryItems(stored);
+    }
+  }, []);
+
+  // Save to localStorage whenever items change
+  useEffect(() => {
+    saveGroceryList(groceryItems);
+  }, [groceryItems]);
+
   const toggleItem = (id: string) => {
     setGroceryItems((items) =>
       items.map((item) => (item.id === id ? { ...item, checked: !item.checked } : item))
@@ -37,6 +53,14 @@ const GroceryList = () => {
   const categories = Array.from(new Set(groceryItems.map((item) => item.category)));
   const checkedCount = groceryItems.filter((item) => item.checked).length;
   const totalCount = groceryItems.length;
+
+  const handleSaveToHistory = () => {
+    saveGroceryHistory(groceryItems);
+    toast({
+      title: "List saved to history",
+      description: "Your grocery list has been saved for future reference.",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-hero">
@@ -56,6 +80,9 @@ const GroceryList = () => {
               </Link>
             </div>
             <div className="flex gap-2">
+              <Button variant="outline" size="icon" onClick={handleSaveToHistory} title="Save to history">
+                <History className="w-4 h-4" />
+              </Button>
               <Button variant="outline" size="icon">
                 <Share2 className="w-4 h-4" />
               </Button>
