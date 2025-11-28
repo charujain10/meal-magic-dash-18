@@ -6,6 +6,26 @@ import { ChefHat, Calendar, Package, ShoppingCart, Sparkles } from "lucide-react
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="relative z-20 border-b bg-card/80 backdrop-blur-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-2 group">
+              <ChefHat className="w-8 h-8 text-primary transition-smooth group-hover:scale-110" />
+              <span className="text-2xl font-display font-bold">MealFlow</span>
+            </Link>
+            <nav className="flex items-center gap-3">
+              <Button asChild variant="ghost">
+                <Link to="/dashboard">Demo</Link>
+              </Button>
+              <Button asChild className="gradient-warm">
+                <Link to="/onboarding">Get Started</Link>
+              </Button>
+            </nav>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Decorative background */}
