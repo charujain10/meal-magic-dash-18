@@ -162,7 +162,7 @@ export const mockRecipes: Recipe[] = [
     image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&q=80",
     time: 10,
     calories: 280,
-    tags: ["Vegetarian", "High Protein", "Breakfast"],
+    tags: ["High Protein", "Breakfast"],
     vegetables: ["Spinach", "Mushrooms", "Bell Peppers", "Onions"],
     ingredients: [
       "3 eggs",
