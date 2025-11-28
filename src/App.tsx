@@ -9,6 +9,7 @@ import Onboarding from "./pages/Onboarding";
 import Dashboard from "./pages/Dashboard";
 import Planner from "./pages/Planner";
 import CalendarView from "./pages/CalendarView";
+import NutritionTracker from "./pages/NutritionTracker";
 import Pantry from "./pages/Pantry";
 import GroceryList from "./pages/GroceryList";
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/planner" element={<Planner />} />
           <Route path="/calendar" element={<CalendarView />} />
+          <Route path="/nutrition" element={<NutritionTracker />} />
           <Route path="/pantry" element={<Pantry />} />
           <Route path="/grocery" element={<GroceryList />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
