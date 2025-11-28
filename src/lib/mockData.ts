@@ -225,14 +225,24 @@ export interface MealPlan {
   };
 }
 
-export const generateWeeklyPlan = (): MealPlan => {
+export const generateWeeklyPlan = (dietaryPreferences: string[] = []): MealPlan => {
   const plan: MealPlan = {};
+  
+  // Filter recipes based on dietary preferences
+  const filteredRecipes = dietaryPreferences.length > 0 && !dietaryPreferences.includes("No Restrictions")
+    ? mockRecipes.filter(recipe => 
+        dietaryPreferences.some(pref => recipe.tags.includes(pref))
+      )
+    : mockRecipes;
+  
+  // If no recipes match, fall back to all recipes
+  const recipesToUse = filteredRecipes.length > 0 ? filteredRecipes : mockRecipes;
   
   weekDays.forEach((day, index) => {
     plan[day] = {
-      breakfast: mockRecipes[index % mockRecipes.length],
-      lunch: mockRecipes[(index + 1) % mockRecipes.length],
-      dinner: mockRecipes[(index + 2) % mockRecipes.length],
+      breakfast: recipesToUse[index % recipesToUse.length],
+      lunch: recipesToUse[(index + 1) % recipesToUse.length],
+      dinner: recipesToUse[(index + 2) % recipesToUse.length],
     };
   });
   
