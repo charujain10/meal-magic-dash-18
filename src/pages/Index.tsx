@@ -29,57 +29,102 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Decorative background */}
-        <div className="absolute inset-0 bg-gradient-hero" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--secondary)/0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-background" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
         
-        <div className="relative container mx-auto px-4 py-24 md:py-32">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center space-y-8 animate-in fade-in duration-700">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-card rounded-full shadow-soft border border-border">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium">Smart Meal Planning Made Simple</span>
-              </div>
-              
-              {/* Main Heading */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] tracking-tight">
-                Plan Your Meals,
-                <br />
-                <span className="gradient-warm bg-clip-text text-transparent">
-                  Simplify Your Life
-                </span>
-              </h1>
-              
-              {/* Subheading */}
-              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Stop stressing about what to cook. Get personalized weekly meal plans 
-                tailored to your dietary preferences, time constraints, and ingredients on hand.
-              </p>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-                <Button asChild size="lg" className="text-lg px-10 py-6 h-auto gradient-warm shadow-medium hover:shadow-strong transition-smooth">
-                  <Link to="/onboarding">
-                    Get Started Free
-                    <Sparkles className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-10 py-6 h-auto border-2 hover:bg-muted/50">
-                  <Link to="/dashboard">View Demo</Link>
-                </Button>
-              </div>
-              
-              {/* Social Proof */}
-              <div className="flex items-center justify-center gap-8 pt-8 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <ChefHat className="w-4 h-4 text-primary" />
-                  <span>10,000+ meal plans created</span>
+        <div className="relative container mx-auto px-4 py-20 md:py-32">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="space-y-8 animate-in fade-in duration-700">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-card rounded-full shadow-soft border border-border">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">Smart Meal Planning Made Simple</span>
                 </div>
-                <div className="hidden sm:block w-1 h-1 rounded-full bg-muted-foreground/30" />
-                <div className="hidden sm:flex items-center gap-2">
-                  <span>⭐⭐⭐⭐⭐</span>
-                  <span>4.9/5 rating</span>
+                
+                {/* Main Heading */}
+                <div className="space-y-4">
+                  <h1 className="text-5xl md:text-6xl xl:text-7xl font-display font-bold leading-[1.1] tracking-tight">
+                    Plan Your Meals,
+                    <br />
+                    <span className="relative inline-block">
+                      <span className="gradient-warm bg-clip-text text-transparent">
+                        Simplify Your Life
+                      </span>
+                      <div className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/20 -rotate-1 rounded-full blur-sm" />
+                    </span>
+                  </h1>
+                  
+                  {/* Subheading */}
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                    Stop stressing about what to cook. Get personalized weekly meal plans 
+                    tailored to your dietary preferences, time constraints, and ingredients on hand.
+                  </p>
+                </div>
+                
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <Button asChild size="lg" className="text-base px-8 py-6 h-auto gradient-warm shadow-medium hover:shadow-strong transition-smooth">
+                    <Link to="/onboarding">
+                      Get Started Free
+                      <Sparkles className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="text-base px-8 py-6 h-auto border-2 hover:bg-muted/50">
+                    <Link to="/dashboard">View Demo</Link>
+                  </Button>
+                </div>
+                
+                {/* Social Proof */}
+                <div className="flex items-center gap-8 pt-4 text-sm">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <ChefHat className="w-4 h-4 text-primary" />
+                    <span className="font-medium">10,000+ meal plans</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-accent">★</span>
+                      ))}
+                    </div>
+                    <span className="font-medium text-muted-foreground">4.9/5 rating</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Visual */}
+              <div className="relative lg:block hidden animate-in fade-in duration-1000 delay-300">
+                <div className="relative">
+                  {/* Main card */}
+                  <Card className="p-6 shadow-strong rotate-2 hover:rotate-0 transition-smooth">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full gradient-warm flex items-center justify-center">
+                          <Calendar className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold">This Week's Plan</h3>
+                          <p className="text-sm text-muted-foreground">7 delicious meals ready</p>
+                        </div>
+                      </div>
+                      <div className="h-2 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full w-3/4 gradient-warm" />
+                      </div>
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="aspect-square rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20" />
+                        <div className="aspect-square rounded-lg bg-gradient-to-br from-secondary/20 to-accent/20" />
+                        <div className="aspect-square rounded-lg bg-gradient-to-br from-accent/20 to-primary/20" />
+                      </div>
+                    </div>
+                  </Card>
+                  
+                  {/* Floating elements */}
+                  <div className="absolute -top-4 -right-4 w-20 h-20 gradient-fresh rounded-2xl shadow-medium rotate-12 animate-pulse" />
+                  <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-card border-2 border-border rounded-2xl shadow-medium -rotate-6 flex items-center justify-center">
+                    <Package className="w-8 h-8 text-secondary" />
+                  </div>
                 </div>
               </div>
             </div>
