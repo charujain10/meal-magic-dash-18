@@ -9,6 +9,7 @@ import { PreferencesWizard, UserPreferences } from "@/components/PreferencesWiza
 import { PreferencesSummary } from "@/components/PreferencesSummary";
 import { WeekCalendar } from "@/components/WeekCalendar";
 import { generateWeeklyPlan, weekDays, mockRecipes, calculateIngredientMatch, mockPantryItems } from "@/lib/mockData";
+import { loadMealPlan, loadPreferences, saveMealPlan } from "@/lib/storage";
 import { ChefHat, ArrowLeft, RefreshCw, ShoppingBasket, Settings, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -27,8 +28,6 @@ const Planner = () => {
 
   // Load user preferences and meal plan from localStorage on mount
   useEffect(() => {
-    const { loadMealPlan, loadPreferences } = require("@/lib/storage");
-    
     // Load preferences
     const preferences = loadPreferences();
     if (preferences) {
@@ -62,7 +61,6 @@ const Planner = () => {
     );
     setMealPlan(newPlan);
     // Save to localStorage
-    const { saveMealPlan } = require("@/lib/storage");
     saveMealPlan(newPlan);
   };
 
@@ -143,7 +141,6 @@ const Planner = () => {
     setMealPlan(newPlan);
     
     // Save to localStorage
-    const { saveMealPlan } = require("@/lib/storage");
     saveMealPlan(newPlan);
     
     toast({
