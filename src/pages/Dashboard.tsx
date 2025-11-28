@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { MealCard } from "@/components/MealCard";
 import { generateWeeklyPlan, weekDays } from "@/lib/mockData";
-import { Calendar, Package, ShoppingCart, Settings, RefreshCw, ChefHat } from "lucide-react";
+import { Calendar, Package, ShoppingCart, Settings, RefreshCw, ChefHat, Target } from "lucide-react";
 
 const Dashboard = () => {
   const [mealPlan] = useState(generateWeeklyPlan());
@@ -31,6 +31,12 @@ const Dashboard = () => {
                 <Link to="/planner">
                   <Calendar className="w-4 h-4 mr-2" />
                   Planner
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/nutrition">
+                  <Target className="w-4 h-4 mr-2" />
+                  Nutrition
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>
@@ -85,6 +91,12 @@ const Dashboard = () => {
             </Link>
           </Button>
           <Button asChild variant="outline" className="h-auto py-6 flex-col gap-2">
+            <Link to="/nutrition">
+              <Target className="w-6 h-6 text-accent" />
+              <span className="font-medium">Nutrition</span>
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="h-auto py-6 flex-col gap-2">
             <Link to="/pantry">
               <Package className="w-6 h-6 text-secondary" />
               <span className="font-medium">Pantry</span>
@@ -92,13 +104,9 @@ const Dashboard = () => {
           </Button>
           <Button asChild variant="outline" className="h-auto py-6 flex-col gap-2">
             <Link to="/grocery">
-              <ShoppingCart className="w-6 h-6 text-accent" />
+              <ShoppingCart className="w-6 h-6 text-primary" />
               <span className="font-medium">Grocery List</span>
             </Link>
-          </Button>
-          <Button variant="outline" className="h-auto py-6 flex-col gap-2">
-            <RefreshCw className="w-6 h-6 text-primary" />
-            <span className="font-medium">Regenerate</span>
           </Button>
         </div>
 
