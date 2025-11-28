@@ -10,6 +10,7 @@ export interface Recipe {
   protein?: number;
   carbs?: number;
   fat?: number;
+  vegetables?: string[]; // Added vegetables field
 }
 
 export interface PantryItem {
@@ -28,6 +29,7 @@ export const mockRecipes: Recipe[] = [
     time: 25,
     calories: 380,
     tags: ["High Protein", "Low Carb", "Gluten Free"],
+    vegetables: ["Garlic", "Onions"],
     ingredients: [
       "2 chicken breasts",
       "2 lemons",
@@ -53,6 +55,7 @@ export const mockRecipes: Recipe[] = [
     time: 30,
     calories: 420,
     tags: ["Vegetarian", "High Fiber", "Vegan"],
+    vegetables: ["Kale", "Carrots"],
     ingredients: [
       "1 cup quinoa",
       "Chickpeas",
@@ -78,6 +81,7 @@ export const mockRecipes: Recipe[] = [
     time: 20,
     calories: 450,
     tags: ["High Protein", "Omega-3", "Quick"],
+    vegetables: ["Broccoli", "Bell Peppers", "Onions"],
     ingredients: [
       "2 salmon fillets",
       "Teriyaki sauce",
@@ -104,6 +108,7 @@ export const mockRecipes: Recipe[] = [
     time: 15,
     calories: 350,
     tags: ["Vegetarian", "Quick", "Cold Meal"],
+    vegetables: ["Tomatoes", "Cucumber", "Onions"],
     ingredients: [
       "Pasta",
       "Cherry tomatoes",
@@ -131,6 +136,7 @@ export const mockRecipes: Recipe[] = [
     time: 25,
     calories: 480,
     tags: ["High Protein", "Asian", "Quick"],
+    vegetables: ["Bell Peppers", "Onions", "Garlic", "Broccoli"],
     ingredients: [
       "Beef strips",
       "Mixed vegetables",
@@ -157,6 +163,7 @@ export const mockRecipes: Recipe[] = [
     time: 10,
     calories: 280,
     tags: ["Vegetarian", "High Protein", "Breakfast"],
+    vegetables: ["Spinach", "Mushrooms", "Bell Peppers", "Onions"],
     ingredients: [
       "3 eggs",
       "Spinach",
@@ -183,6 +190,7 @@ export const mockRecipes: Recipe[] = [
     time: 35,
     calories: 520,
     tags: ["Thai", "Spicy", "Vegetarian Option"],
+    vegetables: ["Bell Peppers", "Onions", "Mushrooms"],
     ingredients: [
       "Green curry paste",
       "Coconut milk",
@@ -225,7 +233,12 @@ export interface MealPlan {
   };
 }
 
-export const generateWeeklyPlan = (dietaryPreferences: string[] = [], maxCookingTime?: number): MealPlan => {
+export const generateWeeklyPlan = (
+  dietaryPreferences: string[] = [], 
+  maxCookingTime?: number,
+  vegetablePrefs?: { include: string[]; exclude: string[] },
+  pantryItemIds?: string[]
+): MealPlan => {
   const plan: MealPlan = {};
   
   // Filter recipes based on dietary preferences
@@ -238,6 +251,49 @@ export const generateWeeklyPlan = (dietaryPreferences: string[] = [], maxCooking
   // Filter by cooking time if specified
   if (maxCookingTime) {
     filteredRecipes = filteredRecipes.filter(recipe => recipe.time <= maxCookingTime);
+  }
+  
+  // Filter by vegetable preferences
+  if (vegetablePrefs) {
+    filteredRecipes = filteredRecipes.filter(recipe => {
+      const recipeVeggies = recipe.vegetables || [];
+      
+      // Exclude recipes with excluded vegetables
+      if (vegetablePrefs.exclude.length > 0) {
+        const hasExcluded = recipeVeggies.some(v => vegetablePrefs.exclude.includes(v));
+        if (hasExcluded) return false;
+      }
+      
+      // Prioritize recipes with included vegetables (but don't exclude others)
+      return true;
+    });
+    
+    // Sort to prioritize recipes with included vegetables
+    if (vegetablePrefs.include.length > 0) {
+      filteredRecipes.sort((a, b) => {
+        const aVeggies = a.vegetables || [];
+        const bVeggies = b.vegetables || [];
+        const aMatches = aVeggies.filter(v => vegetablePrefs.include.includes(v)).length;
+        const bMatches = bVeggies.filter(v => vegetablePrefs.include.includes(v)).length;
+        return bMatches - aMatches;
+      });
+    }
+  }
+  
+  // Prioritize recipes with pantry items
+  if (pantryItemIds && pantryItemIds.length > 0) {
+    const pantryItems = mockPantryItems.filter(item => pantryItemIds.includes(item.id));
+    const pantryNames = pantryItems.map(item => item.name.toLowerCase());
+    
+    filteredRecipes.sort((a, b) => {
+      const aMatches = a.ingredients.filter(ing => 
+        pantryNames.some(pItem => ing.toLowerCase().includes(pItem))
+      ).length;
+      const bMatches = b.ingredients.filter(ing => 
+        pantryNames.some(pItem => ing.toLowerCase().includes(pItem))
+      ).length;
+      return bMatches - aMatches;
+    });
   }
   
   // If no recipes match, fall back to all recipes
