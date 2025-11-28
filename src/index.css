@@ -8,81 +8,80 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Warm, inviting color palette for meal planning */
-    --background: 30 40% 98%;
-    --foreground: 24 20% 15%;
+    /* Modern, clean color palette */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 24 20% 15%;
+    --card-foreground: 240 10% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 24 20% 15%;
+    --popover-foreground: 240 10% 10%;
 
-    /* Warm terracotta primary */
-    --primary: 16 75% 55%;
+    /* Deep teal primary */
+    --primary: 180 75% 35%;
     --primary-foreground: 0 0% 100%;
 
-    /* Sage green secondary */
-    --secondary: 145 25% 65%;
-    --secondary-foreground: 24 20% 15%;
-
-    /* Soft cream muted */
-    --muted: 35 30% 92%;
-    --muted-foreground: 24 15% 45%;
-
-    /* Warm orange accent */
-    --accent: 30 85% 60%;
+    /* Warm coral accent */
+    --accent: 15 85% 62%;
     --accent-foreground: 0 0% 100%;
+
+    /* Soft lavender secondary */
+    --secondary: 250 45% 92%;
+    --secondary-foreground: 240 10% 10%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 20% 88%;
-    --input: 30 20% 88%;
-    --ring: 16 75% 55%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 180 75% 35%;
 
     --radius: 0.75rem;
 
     /* Custom design system tokens */
-    --gradient-warm: linear-gradient(135deg, hsl(16 75% 55%), hsl(30 85% 60%));
-    --gradient-fresh: linear-gradient(135deg, hsl(145 25% 65%), hsl(145 35% 75%));
-    --gradient-hero: linear-gradient(135deg, hsl(16 75% 55% / 0.1), hsl(145 25% 65% / 0.1));
+    --gradient-primary: linear-gradient(135deg, hsl(180 75% 35%), hsl(180 65% 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(15 85% 62%), hsl(25 85% 65%));
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%), hsl(250 45% 98%));
     
-    --shadow-soft: 0 2px 8px hsl(16 75% 55% / 0.08);
-    --shadow-medium: 0 4px 16px hsl(16 75% 55% / 0.12);
-    --shadow-strong: 0 8px 24px hsl(16 75% 55% / 0.16);
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-strong: 0 16px 48px rgba(0, 0, 0, 0.12);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 24 25% 12%;
-    --foreground: 30 40% 95%;
+    --background: 240 10% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 24 22% 15%;
-    --card-foreground: 30 40% 95%;
+    --card: 240 8% 12%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 24 22% 15%;
-    --popover-foreground: 30 40% 95%;
+    --popover: 240 8% 12%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 16 75% 55%;
+    --primary: 180 75% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 145 20% 35%;
-    --secondary-foreground: 30 40% 95%;
+    --accent: 15 85% 62%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 24 20% 20%;
-    --muted-foreground: 30 25% 65%;
+    --secondary: 240 5% 20%;
+    --secondary-foreground: 0 0% 98%;
 
-    --accent: 30 85% 60%;
-    --accent-foreground: 24 25% 12%;
+    --muted: 240 5% 18%;
+    --muted-foreground: 240 5% 64%;
 
     --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 24 20% 25%;
-    --input: 24 20% 25%;
-    --ring: 16 75% 55%;
+    --border: 240 5% 20%;
+    --input: 240 5% 20%;
+    --ring: 180 75% 45%;
   }
 }
 
@@ -101,12 +100,12 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  .gradient-warm {
-    background: var(--gradient-warm);
+  .gradient-primary {
+    background: var(--gradient-primary);
   }
   
-  .gradient-fresh {
-    background: var(--gradient-fresh);
+  .gradient-accent {
+    background: var(--gradient-accent);
   }
   
   .gradient-hero {
