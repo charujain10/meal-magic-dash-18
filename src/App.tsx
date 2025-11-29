@@ -13,6 +13,7 @@ import NutritionTracker from "./pages/NutritionTracker";
 import Pantry from "./pages/Pantry";
 import GroceryList from "./pages/GroceryList";
 import Favorites from "./pages/Favorites";
+import { ChatBot } from "./components/ChatBot";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ChatBot />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
