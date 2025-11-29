@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, Mic, MicOff } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   id: string;
@@ -39,6 +40,7 @@ const getMockResponse = (userMessage: string): string => {
 };
 
 export const ChatBot = () => {
+  const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -50,13 +52,53 @@ export const ChatBot = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isTyping]);
+
+  useEffect(() => {
+    // Initialize speech recognition
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-US';
+
+      recognitionRef.current.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        setInputValue(transcript);
+        setIsRecording(false);
+      };
+
+      recognitionRef.current.onerror = (event: any) => {
+        console.error('Speech recognition error:', event.error);
+        setIsRecording(false);
+        toast({
+          title: "Voice input error",
+          description: "Could not process voice input. Please try again.",
+          variant: "destructive",
+        });
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsRecording(false);
+      };
+    }
+
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, [toast]);
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
@@ -89,6 +131,30 @@ export const ChatBot = () => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
+    }
+  };
+
+  const toggleVoiceInput = () => {
+    if (!recognitionRef.current) {
+      toast({
+        title: "Voice input not supported",
+        description: "Your browser doesn't support voice input. Try Chrome or Edge.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (isRecording) {
+      recognitionRef.current.stop();
+      setIsRecording(false);
+    } else {
+      setInputValue("");
+      recognitionRef.current.start();
+      setIsRecording(true);
+      toast({
+        title: "Listening...",
+        description: "Speak now to input your message",
+      });
     }
   };
 
@@ -175,17 +241,27 @@ export const ChatBot = () => {
           {/* Input */}
           <div className="p-4 border-t">
             <div className="flex gap-2">
+              <Button
+                onClick={toggleVoiceInput}
+                size="icon"
+                variant={isRecording ? "destructive" : "outline"}
+                disabled={isTyping}
+                className={isRecording ? "animate-pulse" : ""}
+              >
+                {isRecording ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+              </Button>
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask me anything..."
+                placeholder={isRecording ? "Listening..." : "Ask me anything..."}
                 className="flex-1"
+                disabled={isRecording}
               />
               <Button
                 onClick={handleSendMessage}
                 size="icon"
-                disabled={!inputValue.trim() || isTyping}
+                disabled={!inputValue.trim() || isTyping || isRecording}
               >
                 <Send className="h-4 w-4" />
               </Button>
