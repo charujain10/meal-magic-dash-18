@@ -20,58 +20,32 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-
+    // Mock authentication for prototyping - accepts any input
+    setTimeout(() => {
+      localStorage.setItem('mock_auth', 'true');
       toast({
         title: "Account created!",
         description: "Welcome to MealFlow. Let's set up your preferences.",
       });
-      
       navigate("/onboarding");
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    } finally {
       setIsLoading(false);
-    }
+    }, 500);
   };
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-
+    // Mock authentication for prototyping - accepts any input
+    setTimeout(() => {
+      localStorage.setItem('mock_auth', 'true');
       toast({
         title: "Welcome back!",
         description: "Redirecting to your dashboard...",
       });
-      
       navigate("/dashboard");
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    } finally {
       setIsLoading(false);
-    }
+    }, 500);
   };
 
   return (
