@@ -14,6 +14,8 @@ import NutritionTracker from "./pages/NutritionTracker";
 import Pantry from "./pages/Pantry";
 import GroceryList from "./pages/GroceryList";
 import Favorites from "./pages/Favorites";
+import Search from "./pages/Search";
+import Settings from "./pages/Settings";
 import { ChatBot } from "./components/ChatBot";
 
 const queryClient = new QueryClient();
@@ -35,6 +37,8 @@ const App = () => (
           <Route path="/pantry" element={<Pantry />} />
           <Route path="/grocery" element={<GroceryList />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

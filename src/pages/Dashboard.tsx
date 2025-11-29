@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { MealCard } from "@/components/MealCard";
 import { generateWeeklyPlan, weekDays } from "@/lib/mockData";
 import { loadMealPlan } from "@/lib/storage";
-import { Calendar, Package, ShoppingCart, Settings, RefreshCw, ChefHat, Target, Heart } from "lucide-react";
+import { Calendar, Package, ShoppingCart, Settings, RefreshCw, ChefHat, Target, Heart, Search } from "lucide-react";
 
 const Dashboard = () => {
   const [mealPlan, setMealPlan] = useState(generateWeeklyPlan());
@@ -35,6 +35,16 @@ const Dashboard = () => {
               <h1 className="text-2xl font-display font-bold">MealFlow</h1>
             </Link>
             <nav className="flex items-center gap-2">
+              <Button variant="ghost" size="icon" asChild>
+                <Link to="/search">
+                  <Search className="w-4 h-4" />
+                </Link>
+              </Button>
+              <Button variant="ghost" size="icon" asChild>
+                <Link to="/settings">
+                  <Settings className="w-4 h-4" />
+                </Link>
+              </Button>
               <Button variant="ghost" size="sm" asChild>
                 <Link to="/planner">
                   <Calendar className="w-4 h-4 mr-2" />
