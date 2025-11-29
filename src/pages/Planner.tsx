@@ -8,9 +8,11 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { PreferencesWizard, UserPreferences } from "@/components/PreferencesWizard";
 import { PreferencesSummary } from "@/components/PreferencesSummary";
 import { WeekCalendar } from "@/components/WeekCalendar";
+import { ReminderSettings } from "@/components/ReminderSettings";
 import { generateWeeklyPlan, weekDays, mockRecipes, calculateIngredientMatch, mockPantryItems } from "@/lib/mockData";
 import { loadMealPlan, loadPreferences, saveMealPlan } from "@/lib/storage";
-import { ChefHat, ArrowLeft, RefreshCw, ShoppingBasket, Settings, Calendar } from "lucide-react";
+import { checkReminders } from "@/lib/reminderChecker";
+import { ChefHat, ArrowLeft, RefreshCw, ShoppingBasket, Settings, Calendar, Bell } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Planner = () => {
@@ -22,9 +24,31 @@ const Planner = () => {
   const [mealPlan, setMealPlan] = useState(generateWeeklyPlan());
   const [pantryItems] = useState(mockPantryItems);
   const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
+  const [isRemindersOpen, setIsRemindersOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const mealPlanRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Check reminders every minute
+  useEffect(() => {
+    const handleReminder = (type: 'grocery' | 'planReview', message: string) => {
+      toast({
+        title: type === 'grocery' ? "Grocery Shopping Reminder" : "Meal Plan Review",
+        description: message,
+        duration: 10000, // Show for 10 seconds
+      });
+    };
+
+    // Check immediately
+    checkReminders(handleReminder);
+
+    // Then check every minute
+    const interval = setInterval(() => {
+      checkReminders(handleReminder);
+    }, 60000); // Check every minute
+
+    return () => clearInterval(interval);
+  }, [toast]);
 
   // Load user preferences and meal plan from localStorage on mount
   useEffect(() => {
@@ -190,6 +214,14 @@ const Planner = () => {
                   <Calendar className="w-4 h-4" />
                 </Link>
               </Button>
+
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={() => setIsRemindersOpen(true)}
+              >
+                <Bell className="w-4 h-4" />
+              </Button>
               
               <Dialog open={isPreferencesOpen} onOpenChange={setIsPreferencesOpen}>
                 <Button variant="outline" className="gap-2" onClick={() => setIsPreferencesOpen(true)}>
@@ -227,6 +259,19 @@ const Planner = () => {
           preferences={userPreferences} 
           onEdit={() => setIsPreferencesOpen(true)}
         />
+
+        {/* Reminder Settings */}
+        <Dialog open={isRemindersOpen} onOpenChange={setIsRemindersOpen}>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Reminder Settings</DialogTitle>
+              <DialogDescription>
+                Set up reminders for grocery shopping and meal plan reviews
+              </DialogDescription>
+            </DialogHeader>
+            <ReminderSettings />
+          </DialogContent>
+        </Dialog>
 
         {/* Week Calendar View */}
         <WeekCalendar 

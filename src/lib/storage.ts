@@ -88,3 +88,40 @@ export const loadPreferences = () => {
   const stored = localStorage.getItem('userPreferences');
   return stored ? JSON.parse(stored) : null;
 };
+
+// Reminder Settings Storage
+export interface ReminderSettings {
+  groceryShopping: {
+    enabled: boolean;
+    dayOfWeek: number; // 0-6 (Sunday-Saturday)
+    time: string; // HH:MM format
+  };
+  mealPlanReview: {
+    enabled: boolean;
+    dayOfWeek: number;
+    time: string;
+  };
+  lastGroceryReminder?: string;
+  lastPlanReviewReminder?: string;
+}
+
+export const saveReminderSettings = (settings: ReminderSettings) => {
+  localStorage.setItem('reminderSettings', JSON.stringify(settings));
+};
+
+export const loadReminderSettings = (): ReminderSettings | null => {
+  const stored = localStorage.getItem('reminderSettings');
+  return stored ? JSON.parse(stored) : null;
+};
+
+export const updateLastReminderTime = (type: 'grocery' | 'planReview') => {
+  const settings = loadReminderSettings();
+  if (settings) {
+    if (type === 'grocery') {
+      settings.lastGroceryReminder = new Date().toISOString();
+    } else {
+      settings.lastPlanReviewReminder = new Date().toISOString();
+    }
+    saveReminderSettings(settings);
+  }
+};
