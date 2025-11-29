@@ -20,7 +20,7 @@ const Index = () => {
                 <Link to="/dashboard">Demo</Link>
               </Button>
               <Button asChild className="gradient-primary">
-                <Link to="/onboarding">Get Started</Link>
+                <Link to="/auth">Get Started</Link>
               </Button>
             </nav>
           </div>
@@ -47,7 +47,7 @@ const Index = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                 <Button asChild size="lg" className="text-lg px-8 h-14 gradient-primary shadow-medium hover:shadow-strong transition-smooth">
-                  <Link to="/onboarding">
+                  <Link to="/auth">
                     Start Planning Free
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
