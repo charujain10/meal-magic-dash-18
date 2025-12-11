@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/e5a22ff3-f656-4470-9df3-a420fe0c3edc
+**URL**: [https://lovable.dev/projects/e5a22ff3-f656-4470-9df3-a420fe0c3edc](https://meal-magic-dash-18.lovable.app/)
 
 ## How can I edit this code?
 
