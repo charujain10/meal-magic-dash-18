@@ -4,7 +4,7 @@
 
 MealFlow — Smart Meal Planning Assistant
 
-MealFlow is an intelligent meal-planning tool designed to help users plan their weekly meals faster and smarter based on their diet, cooking time, and pantry ingredients.
+MealFlow is an intelligent meal-planning tool designed to help users plan their weekly meals faster and smarter based on their diet, cooking time, and pantry ingredients. It plans meals faster and smarter by combining personalized meal planning and have an AI-powered chatbot assistant.
 It removes the stress of decision-making and reduces food waste by generating optimized, personalized meal plans in minutes.
 
 🚀 Demo
